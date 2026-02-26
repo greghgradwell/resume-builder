@@ -10,6 +10,7 @@
 - `templates/` — Jinja2 HTML templates and CSS
 - `fonts/` — Self-hosted font files (TTF/WOFF2)
 - `jobs/` — Generated resumes organized by company/role
+- `jobs/<company>/<role>/.generate.yaml` — Sidecar: saved template + output path (commit this)
 
 ## Resume Tailoring Workflow
 When asked to tailor a resume, ALWAYS read INSTRUCTIONS.md first and follow it exactly.
