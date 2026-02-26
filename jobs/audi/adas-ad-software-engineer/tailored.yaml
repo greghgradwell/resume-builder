@@ -1,0 +1,141 @@
+# Tailored for: Audi — ADAS/AD Software Engineer
+# Source: data/resume.yaml
+
+basics:
+  name: Greg H. Gradwell
+  label: Senior Software Engineer
+  email: q376@pm.me
+  phone: "541.227.1805"
+  location:
+    city: Los Gatos
+    region: CA
+    countryCode: US
+  profiles: []
+
+work:
+  - name: Emissare
+    position: Founder, CTO
+    startDate: "2024-12"
+    summary: AI-first onboard software for fixed-wing UAVs enabling natural language mission planning and autonomous multi-objective flight.
+    highlights:
+      - "Developed LLM-based natural language mission planner enabling complex, branching mission objectives"
+      - "Created Isaac Sim extension to simulate multirotor and fixed-wing missions with photorealistic imagery on Google G2 VM"
+      - "Designed hardware-in-the-loop test environment pairing Isaac Sim on GCP with Jetson Orin Nano target hardware"
+      - "Validated computer vision object detection in photorealistic simulator"
+      - "Integrated onboard autonomy stack with PX4 autopilot for fixed-wing flight control"
+
+  - name: VERVR
+    position: Founder, Engineer
+    startDate: "2024-04"
+    endDate: "2024-12"
+    summary: VR startup creating immersive experiences that use real, software-controlled vehicles.
+    highlights:
+      - "Built immersive VR experiences that utilize real, moving, software-controlled vehicles"
+      - "Implemented real-time autonomous supervision and control to keep vehicles confined to safe areas"
+
+  - name: Pyka
+    position: Software Engineer
+    startDate: "2022-01"
+    endDate: "2024-04"
+    summary: C++ flight software for autonomous fixed-wing agricultural UAVs.
+    highlights:
+      - "Worked with entire C++ flight computer code base, with a focus on the flight controller, path planner, simulator, and testing environment"
+      - "Developed system to incorporate RTK corrections with aircraft INS by means of custom NTRIP caster"
+      - "Built and supported several Python-based GUI tools that replaced command line interfaces"
+
+  - name: COPPERPUNK
+    position: Founder, Engineer
+    startDate: "2020-05"
+    endDate: "2022-01"
+    summary: Personal R&D company developing an open autopilot platform for multiple vehicle types.
+    highlights:
+      - "Developed and validated Elixir-based autopilot for fixed-wing, multirotor, and ground vehicles"
+      - "Wrote Arduino and Elixir-based device drivers to interface with autopilot sensors and actuators"
+      - "Utilized OpenCV to perform high-level autonomy tasks"
+
+  - name: Zone 5 Technologies
+    position: Aerospace Engineer
+    startDate: "2020-02"
+    endDate: "2020-05"
+    summary: Short-term contract supporting flight software and testing for an experimental tilt-wing UAV.
+    highlights:
+      - "Adapted Pixhawk source code to interface custom electric motors with UAVCAN driver"
+      - "Supported software validation and flight test program for experimental tilt-wing UAV"
+
+  - name: Kitty Hawk
+    position: Software Engineer
+    startDate: "2019-09"
+    endDate: "2020-02"
+    summary: Software development for eVTOL vehicles on embedded ROS systems.
+    highlights:
+      - "Contributed to C++ vehicle software running ROS on embedded Jetson TX2"
+      - "Programmed and integrated Arduino-based components to assist with vehicle testing"
+      - "Earned Self-Driving Car Engineer Nanodegree from Udacity while working full-time"
+
+  - name: Kitty Hawk
+    position: Senior Flight Test Engineer
+    startDate: "2018-06"
+    endDate: "2019-09"
+    summary: Flight test operations for subscale and full-scale multirotor eVTOL vehicles.
+    highlights:
+      - "Operated flight test cell for subscale and full-scale multirotor vehicles"
+      - "Developed feature software related to vehicle control and performance"
+
+  - name: PHAEROH
+    position: Founder, Engineer
+    startDate: "2014-07"
+    endDate: "2018-06"
+    summary: Founded UAV startup developing autonomous fixed-wing aircraft for precision agriculture.
+    highlights:
+      - "Created C++/Arduino-based multirotor flight controller"
+      - "Incorporated MATLAB-based 6-DOF simulation to verify autopilot path planning algorithms"
+
+  - name: Specialized Air Services, Inc.
+    position: Aerospace Engineer, Flight Test
+    startDate: "2011-11"
+    endDate: "2014-07"
+    summary: UAV engineering, manufacturing, and flight test at a small aerospace company.
+    highlights:
+      - "Designed, assembled, and validated fully autonomous fixed-wing autopilot, conducted all vehicle tests, and analyzed ground and flight test data in the field to facilitate rapid software development"
+
+  - name: Air Force Flight Test Center
+    position: Flight Test Engineer
+    startDate: "2008-09"
+    endDate: "2011-11"
+    summary: Flight test engineering at Edwards AFB supporting envelope expansion and evaluation programs.
+    highlights:
+      - "Developed MATLAB scripts to analyze test data in near real-time, reducing the turnaround between tests by several days"
+
+skills:
+  - name: Software
+    level: Advanced
+    keywords: [C++, Python, ROS, MATLAB, Elixir, Arduino]
+  - name: Embedded Systems
+    level: Advanced
+    keywords: [CAN, UART, I2C, SPI, PWM, MAVLink, UAVCAN, Pixhawk]
+  - name: Hardware Integration
+    level: Intermediate
+    keywords: [CAD/CAM, 3D printing, laser cutter, CNC mill, soldering, crimping]
+  - name: Simulation & Analysis
+    level: Intermediate
+    keywords: [Hardware-in-the-Loop, Isaac Sim, OpenCV, MATLAB, X-Plane, RealFlight]
+  - name: AI
+    level: Intermediate
+    keywords: [computer vision, LLMs, VLMs, LangChain/LangGraph/LangSmith]
+  
+education:
+  - institution: California Polytechnic State University, San Luis Obispo
+    area: Aerospace Engineering
+    studyType: M.S.
+    endDate: "2011-06"
+  - institution: California Polytechnic State University, San Luis Obispo
+    area: Aerospace Engineering
+    studyType: B.S.
+    endDate: "2008-06"
+
+publications:
+  - name: "Autonomous UAS Controlled by Onboard Smartphone"
+    publisher: "ICUAS 2015"
+    releaseDate: "2015-07-01"
+    url: https://doi.org/10.1109/ICUAS.2015.7152322
+    summary: Describes a fixed-wing UAV autopilot implemented entirely on an Android smartphone, covering sensor integration, control algorithms, and flight test results.
