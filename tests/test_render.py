@@ -6,22 +6,26 @@ from render import render_html, load_yaml
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
 
-def test_render_html_contains_name():
-    data = load_yaml(str(PROJECT_ROOT / "data" / "resume.yaml"))
-    html = render_html(data, template="modern")
-    assert data["basics"]["name"] in html
+@pytest.fixture
+def resume_data():
+    return load_yaml(str(PROJECT_ROOT / "data" / "resume.yaml"))
 
 
-def test_render_html_links_style_css():
-    data = load_yaml(str(PROJECT_ROOT / "data" / "resume.yaml"))
-    html = render_html(data, template="modern")
-    assert "modern/style.css" in html
+@pytest.fixture
+def modern_html(resume_data):
+    return render_html(resume_data, template="modern")
 
 
-def test_render_html_links_base_css():
-    data = load_yaml(str(PROJECT_ROOT / "data" / "resume.yaml"))
-    html = render_html(data, template="modern")
-    assert "templates/base.css" in html
+def test_render_html_contains_name(modern_html, resume_data):
+    assert resume_data["basics"]["name"] in modern_html
+
+
+def test_render_html_links_style_css(modern_html):
+    assert "modern/style.css" in modern_html
+
+
+def test_render_html_links_base_css(modern_html):
+    assert "templates/base.css" in modern_html
 
 
 def test_render_html_unknown_template_raises():

@@ -1,4 +1,5 @@
 from pathlib import Path
+import pytest
 import yaml
 from generate import load_sidecar, save_sidecar, list_templates, prompt_settings
 
@@ -43,3 +44,9 @@ def test_prompt_settings_defaults_to_first_on_empty_input(tmp_path, monkeypatch)
     monkeypatch.setattr("builtins.input", lambda _: next(inputs))
     chosen, _ = prompt_settings(tmp_path / "tailored.yaml")
     assert chosen == "modern"
+
+
+def test_prompt_settings_raises_when_no_templates(tmp_path, monkeypatch):
+    monkeypatch.setattr("generate.list_templates", lambda: [])
+    with pytest.raises(RuntimeError):
+        prompt_settings(tmp_path / "tailored.yaml")

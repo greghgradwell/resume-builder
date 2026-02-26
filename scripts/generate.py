@@ -73,7 +73,10 @@ def main():
 
     if sidecar:
         template = sidecar["template"]
-        output_path = data_path.parent / sidecar["output"]
+        valid = {t["name"] for t in list_templates()}
+        if template not in valid:
+            raise ValueError(f"Unknown template '{template}' in sidecar. Run with --reconfigure to choose a new one.")
+        output_path = data_path.parent / Path(sidecar["output"]).name
         print(f"\nUsing saved settings ({SIDECAR_NAME}):")
         print(f"  template: {template}")
         print(f"  output:   {output_path}\n")
@@ -92,13 +95,15 @@ def main():
         print(f"Rendered:  {html_path}")
         generate_pdf(str(html_path), str(output_path))
     else:
-        with tempfile.NamedTemporaryFile(suffix=".html", mode="w", delete=False) as tmp:
-            tmp.write(html)
-            tmp_path = tmp.name
+        tmp_path = None
         try:
+            with tempfile.NamedTemporaryFile(suffix=".html", mode="w", delete=False) as tmp:
+                tmp.write(html)
+                tmp_path = tmp.name
             generate_pdf(tmp_path, str(output_path))
         finally:
-            Path(tmp_path).unlink()
+            if tmp_path is not None:
+                Path(tmp_path).unlink(missing_ok=True)
 
     print(f"Generated: {output_path}")
 
