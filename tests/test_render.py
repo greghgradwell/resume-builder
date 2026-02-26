@@ -1,5 +1,6 @@
 from pathlib import Path
 import pytest
+from jinja2 import TemplateNotFound
 from render import render_html, load_yaml
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
@@ -24,5 +25,5 @@ def test_render_html_links_base_css():
 
 
 def test_render_html_unknown_template_raises():
-    with pytest.raises(Exception):
+    with pytest.raises(TemplateNotFound):
         render_html({}, template="nonexistent")
