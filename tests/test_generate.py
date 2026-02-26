@@ -31,19 +31,27 @@ def test_list_templates_have_description():
         assert "description" in t and t["description"]
 
 
+FAKE_TEMPLATES = [
+    {"name": "alpha", "description": "First template"},
+    {"name": "beta", "description": "Second template"},
+]
+
+
 def test_prompt_settings_selects_template_by_number(tmp_path, monkeypatch):
+    monkeypatch.setattr("generate.list_templates", lambda: FAKE_TEMPLATES)
     inputs = iter(["1", ""])
     monkeypatch.setattr("builtins.input", lambda _: next(inputs))
     chosen, output_path = prompt_settings(tmp_path / "tailored.yaml")
-    assert chosen == "modern"
+    assert chosen == "alpha"
     assert output_path == tmp_path / "resume.pdf"
 
 
 def test_prompt_settings_defaults_to_first_on_empty_input(tmp_path, monkeypatch):
+    monkeypatch.setattr("generate.list_templates", lambda: FAKE_TEMPLATES)
     inputs = iter(["", ""])
     monkeypatch.setattr("builtins.input", lambda _: next(inputs))
     chosen, _ = prompt_settings(tmp_path / "tailored.yaml")
-    assert chosen == "modern"
+    assert chosen == "alpha"
 
 
 def test_prompt_settings_raises_when_no_templates(tmp_path, monkeypatch):

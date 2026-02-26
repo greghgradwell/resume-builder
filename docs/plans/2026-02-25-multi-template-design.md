@@ -17,12 +17,11 @@ templates/
   modern/
     resume.html       ← extends base.html, migrated from templates/resume.html
     style.css         ← migrated from templates/styles/modern.css
-    meta.yaml         ← template name and description
+    meta.yaml         ← template description (name is derived from folder name)
 ```
 
 `meta.yaml` format:
 ```yaml
-name: Modern
 description: Clean single-column with Montserrat headings and blue accents
 ```
 
@@ -68,7 +67,7 @@ Using saved settings (.generate.yaml):
 
 ```yaml
 template: modern
-output: resume.pdf   # relative to the tailored.yaml directory
+output: resume.pdf   # output filename (placed in the job directory)
 ```
 
 ### Removed

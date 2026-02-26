@@ -19,20 +19,27 @@ def list_templates() -> list[dict]:
         meta_file = d / "meta.yaml"
         if d.is_dir() and meta_file.exists():
             meta = yaml.safe_load(meta_file.read_text())
+            if not isinstance(meta, dict):
+                raise RuntimeError(f"Template '{d.name}': meta.yaml must be a YAML mapping")
+            if "description" not in meta:
+                raise RuntimeError(f"Template '{d.name}': meta.yaml missing required 'description' field")
             templates.append({**meta, "name": d.name})
     return templates
 
 
 def load_sidecar(data_path: Path) -> dict | None:
     sidecar = data_path.parent / SIDECAR_NAME
-    if sidecar.exists():
-        return yaml.safe_load(sidecar.read_text())
-    return None
+    if not sidecar.exists():
+        return None
+    data = yaml.safe_load(sidecar.read_text())
+    if not isinstance(data, dict) or "template" not in data or "output" not in data:
+        raise RuntimeError(f"Malformed sidecar {sidecar}. Run with --reconfigure to recreate it.")
+    return data
 
 
 def save_sidecar(data_path: Path, template: str, output: str) -> None:
     sidecar = data_path.parent / SIDECAR_NAME
-    sidecar.write_text(yaml.dump({"output": output, "template": template}))
+    sidecar.write_text(yaml.safe_dump({"output": output, "template": template}, sort_keys=True))
 
 
 def prompt_settings(data_path: Path) -> tuple[str, Path]:
@@ -54,9 +61,9 @@ def prompt_settings(data_path: Path) -> tuple[str, Path]:
             pass
         print(f"  Enter a number between 1 and {len(templates)}.")
 
-    default_output = data_path.parent / "resume.pdf"
-    raw_output = input(f"Output path [{default_output}]: ").strip()
-    output_path = Path(raw_output) if raw_output else default_output
+    default_output = "resume.pdf"
+    raw_output = input(f"Output filename [{default_output}]: ").strip()
+    output_path = data_path.parent / (raw_output or default_output)
 
     return chosen, output_path
 
