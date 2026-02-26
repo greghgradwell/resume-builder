@@ -63,7 +63,7 @@ def prompt_settings(data_path: Path) -> tuple[str, Path]:
 
     default_output = "resume.pdf"
     raw_output = input(f"Output filename [{default_output}]: ").strip()
-    output_path = data_path.parent / (raw_output or default_output)
+    output_path = data_path.parent / Path(raw_output or default_output).name
 
     return chosen, output_path
 

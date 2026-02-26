@@ -44,7 +44,7 @@ def build_jinja_env(template_dir: Path) -> Environment:
 
 
 def render_html(data: dict, template: str = "modern") -> str:
-    template_dir = TEMPLATES_DIR / template
+    template_dir = TEMPLATES_DIR / Path(template).name
     env = build_jinja_env(template_dir)
     tmpl = env.get_template("resume.html")
     return tmpl.render(
