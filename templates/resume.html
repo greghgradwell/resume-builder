@@ -1,0 +1,220 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="header">
+  <div class="header-name">{{ data.basics.name }}</div>
+  {% if data.basics.label %}
+  <div class="header-label">{{ data.basics.label }}</div>
+  {% endif %}
+  <div class="header-contact">
+    {% if data.basics.email %}<span>{{ data.basics.email }}</span>{% endif %}
+    {% if data.basics.phone %}<span>{{ data.basics.phone }}</span>{% endif %}
+    {% if data.basics.url %}<span><a href="{{ data.basics.url }}">{{ data.basics.url | strip_scheme }}</a></span>{% endif %}
+    {% for profile in data.basics.profiles | default([]) %}
+    <span><a href="{{ profile.url }}">{{ profile.network }}: {{ profile.url | strip_scheme }}</a></span>
+    {% endfor %}
+  </div>
+</div>
+
+{# ── Work Experience ──────────────────────────── #}
+{% if data.work %}
+<div class="section">
+  <div class="section-title">Experience</div>
+  {% for job in data.work %}
+  <div class="entry">
+    <div class="entry-header">
+      <div>
+        <span class="entry-title">{{ job.position }}</span>
+        <span class="entry-subtitle"> · {{ job.name }}</span>
+      </div>
+      <div class="entry-date">
+        {{ job.startDate | format_date }}{% if job.endDate %} – {{ job.endDate | format_date }}{% else %} – Present{% endif %}
+      </div>
+    </div>
+    {% set bullets = job.bullets | default([]) %}
+    {% set highlights = job.highlights | default([]) %}
+    {% if bullets %}
+    <ul>
+      {% for item in bullets %}
+      <li>{{ item.text }}</li>
+      {% endfor %}
+    </ul>
+    {% elif highlights %}
+    <ul>
+      {% for item in highlights %}
+      <li>{{ item }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+{# ── Skills ──────────────────────────────────── #}
+{% if data.skills %}
+<div class="section">
+  <div class="section-title">Skills</div>
+  <div class="skills-grid">
+    {% for skill in data.skills %}
+    <div class="skill-row">
+      <span class="skill-name">{{ skill.name }}:</span>
+      {{ skill.keywords | join(", ") }}
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
+{# ── Projects ─────────────────────────────────── #}
+{% if data.projects %}
+<div class="section">
+  <div class="section-title">Projects</div>
+  {% for project in data.projects %}
+  <div class="entry">
+    <div class="entry-header">
+      <div>
+        <span class="entry-title">
+          {% if project.url %}<a href="{{ project.url }}">{{ project.name }}</a>{% else %}{{ project.name }}{% endif %}
+        </span>
+        {% if project.keywords %}
+        <span class="entry-subtitle"> · {{ project.keywords | join(", ") }}</span>
+        {% endif %}
+      </div>
+      {% if project.startDate %}
+      <div class="entry-date">
+        {{ project.startDate | format_date }}{% if project.endDate %} – {{ project.endDate | format_date }}{% endif %}
+      </div>
+      {% endif %}
+    </div>
+    {% if project.description %}
+    <div class="entry-summary">{{ project.description }}</div>
+    {% endif %}
+    {% set bullets = project.bullets | default([]) %}
+    {% set highlights = project.highlights | default([]) %}
+    {% if bullets %}
+    <ul>
+      {% for item in bullets %}
+      <li>{{ item.text }}</li>
+      {% endfor %}
+    </ul>
+    {% elif highlights %}
+    <ul>
+      {% for item in highlights %}
+      <li>{{ item }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+{# ── Education ────────────────────────────────── #}
+{% if data.education %}
+<div class="section">
+  <div class="section-title">Education</div>
+  {% for edu in data.education %}
+  <div class="entry education-entry">
+    <div class="entry-header">
+      <div>
+        <span class="entry-title">{{ edu.studyType }} {{ edu.area }}</span>
+        <span class="entry-subtitle"> · {{ edu.institution }}</span>
+      </div>
+      <div class="entry-date">
+        {{ edu.startDate | format_date }} – {{ edu.endDate | format_date }}
+      </div>
+    </div>
+    {% if edu.score %}
+    <div class="entry-summary">{{ edu.score }}</div>
+    {% endif %}
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+{# ── Publications ─────────────────────────────── #}
+{% if data.publications %}
+<div class="section">
+  <div class="section-title">Publications</div>
+  {% for pub in data.publications %}
+  <div class="pub-entry">
+    <span class="pub-entry-title">
+      {% if pub.url %}<a href="{{ pub.url }}">{{ pub.name }}</a>{% else %}{{ pub.name }}{% endif %}
+    </span>
+    <span class="pub-entry-meta"> · {{ pub.publisher }}{% if pub.releaseDate %}, {{ pub.releaseDate | format_date }}{% endif %}</span>
+    {% if pub.summary %}
+    <div>{{ pub.summary }}</div>
+    {% endif %}
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+{# ── Certificates ─────────────────────────────── #}
+{% if data.certificates %}
+<div class="section">
+  <div class="section-title">Certifications</div>
+  {% for cert in data.certificates %}
+  <div class="cert-entry">
+    <span class="cert-entry-name">{{ cert.name }}</span>
+    <span class="cert-entry-meta"> · {{ cert.issuer }}{% if cert.date %}, {{ cert.date | format_date }}{% endif %}</span>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+{# ── Awards ───────────────────────────────────── #}
+{% if data.awards %}
+<div class="section">
+  <div class="section-title">Awards</div>
+  {% for award in data.awards %}
+  <div class="award-entry">
+    <span class="award-entry-title">{{ award.title }}</span>
+    <span class="award-entry-meta"> · {{ award.awarder }}{% if award.date %}, {{ award.date | format_date }}{% endif %}</span>
+    {% if award.summary %}
+    <div>{{ award.summary }}</div>
+    {% endif %}
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+{# ── Volunteer ─────────────────────────────────── #}
+{% if data.volunteer %}
+<div class="section">
+  <div class="section-title">Volunteer</div>
+  {% for vol in data.volunteer %}
+  <div class="entry">
+    <div class="entry-header">
+      <div>
+        <span class="entry-title">{{ vol.position }}</span>
+        <span class="entry-subtitle"> · {{ vol.organization }}</span>
+      </div>
+      <div class="entry-date">
+        {{ vol.startDate | format_date }}{% if vol.endDate %} – {{ vol.endDate | format_date }}{% else %} – Present{% endif %}
+      </div>
+    </div>
+    {% if vol.summary %}
+    <div class="entry-summary">{{ vol.summary }}</div>
+    {% endif %}
+    {% set bullets = vol.bullets | default([]) %}
+    {% set highlights = vol.highlights | default([]) %}
+    {% if bullets %}
+    <ul>
+      {% for item in bullets %}
+      <li>{{ item.text }}</li>
+      {% endfor %}
+    </ul>
+    {% elif highlights %}
+    <ul>
+      {% for item in highlights %}
+      <li>{{ item }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+{% endblock %}

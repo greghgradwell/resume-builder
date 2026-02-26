@@ -1,0 +1,153 @@
+:root {
+  --font-heading: 'Montserrat', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-size-name: 22px;
+  --font-size-section: 10px;
+  --font-size-heading: 11px;
+  --font-size-body: 10.5px;
+  --font-size-small: 9px;
+  --spacing-section: 12px;
+  --spacing-item: 6px;
+  --line-height: 1.35;
+  --color-text: #1a1a1a;
+  --color-heading: #333333;
+  --color-accent: #2c5282;
+  --color-divider: #cccccc;
+  --color-meta: #555555;
+}
+
+/* ── Header ─────────────────────────────────── */
+
+.header {
+  margin-bottom: var(--spacing-section);
+}
+
+.header-name {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-name);
+  font-weight: 600;
+  color: var(--color-heading);
+  letter-spacing: -0.3px;
+}
+
+.header-label {
+  font-size: var(--font-size-heading);
+  color: var(--color-meta);
+  margin-top: 1px;
+  margin-bottom: 4px;
+}
+
+.header-contact {
+  font-size: var(--font-size-small);
+  color: var(--color-meta);
+}
+
+.header-contact span + span::before {
+  content: " · ";
+}
+
+/* ── Section ─────────────────────────────────── */
+
+.section {
+  margin-bottom: var(--spacing-section);
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-section);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--color-heading);
+  border-bottom: 1px solid var(--color-divider);
+  padding-bottom: 2px;
+  margin-bottom: 6px;
+}
+
+/* ── Entry (work, project, volunteer) ──────── */
+
+.entry {
+  margin-bottom: var(--spacing-item);
+}
+
+.entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.entry-title {
+  font-size: var(--font-size-heading);
+  font-weight: 600;
+  color: var(--color-heading);
+}
+
+.entry-subtitle {
+  font-size: var(--font-size-body);
+  color: var(--color-meta);
+}
+
+.entry-date {
+  font-size: var(--font-size-small);
+  color: var(--color-meta);
+  white-space: nowrap;
+  margin-left: 8px;
+  flex-shrink: 0;
+}
+
+.entry-summary {
+  font-size: var(--font-size-body);
+  color: var(--color-meta);
+  margin-bottom: 2px;
+}
+
+.entry ul {
+  font-size: var(--font-size-body);
+  margin-top: 2px;
+}
+
+/* ── Skills ──────────────────────────────────── */
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3px 16px;
+}
+
+.skill-row {
+  font-size: var(--font-size-body);
+}
+
+.skill-name {
+  font-weight: 600;
+  color: var(--color-heading);
+}
+
+/* ── Education ───────────────────────────────── */
+
+.education-entry .entry-header {
+  align-items: baseline;
+}
+
+/* ── Publications / Certificates / Awards ────── */
+
+.pub-entry,
+.cert-entry,
+.award-entry {
+  margin-bottom: var(--spacing-item);
+  font-size: var(--font-size-body);
+}
+
+.pub-entry-title,
+.cert-entry-name,
+.award-entry-title {
+  font-weight: 600;
+  color: var(--color-heading);
+}
+
+.pub-entry-meta,
+.cert-entry-meta,
+.award-entry-meta {
+  color: var(--color-meta);
+  font-size: var(--font-size-small);
+}

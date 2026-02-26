@@ -1,0 +1,257 @@
+basics:
+  name: Greg H. Gradwell
+  label: Senior Software Engineer
+  email: q376@pm.me
+  phone: "541.227.1805"
+  location:
+    city: Los Gatos
+    region: CA
+    countryCode: US
+  profiles: []
+
+work:
+  - name: Emissare
+    position: Founder, CTO
+    startDate: "2025-12"
+    summary: AI-first onboard software for fixed-wing UAVs enabling natural language mission planning and autonomous multi-objective flight.
+    bullets:
+      - text: "Developed LLM-based natural language mission planner enabling complex, branching mission objectives"
+        tags: [software, ai, llm, autonomous-systems]
+        priority: 1
+      - text: "Created Isaac Sim v5.0 extension to simulate multirotor and fixed-wing missions with photorealistic imagery on a Google G2 VM"
+        tags: [software, simulation, uav]
+        priority: 1
+      - text: "Designed hardware-in-the-loop test environment pairing Isaac Sim on GCP with Jetson Orin Nano target hardware"
+        tags: [software, simulation, testing, embedded]
+        priority: 2
+      - text: "Validated computer vision object detection in photorealistic simulator without modifying detection algorithms"
+        tags: [software, computer-vision, simulation]
+        priority: 2
+      - text: "Integrated onboard autonomy stack with PX4 autopilot for fixed-wing flight control"
+        tags: [software, autopilot, uav, embedded]
+        priority: 2
+
+  - name: VERVR
+    position: Founder, Engineer
+    startDate: "2024-04"
+    endDate: "2024-12"
+    summary: VR startup creating immersive experiences that use real, software-controlled vehicles.
+    bullets:
+      - text: "Built immersive VR experiences that utilize real, software-controlled vehicles"
+        tags: [software, vr, autonomous-systems]
+        priority: 1
+      - text: "Implemented real-time autonomous supervision and control to keep vehicles confined to safe areas"
+        tags: [software, autonomous-systems, safety, embedded]
+        priority: 1
+      - text: "Designed two-layer PCBs to improve prototype robustness and aesthetics"
+        tags: [hardware, pcb-design, embedded]
+        priority: 2
+
+  - name: Pyka
+    position: Software Engineer
+    startDate: "2022-01"
+    endDate: "2024-04"
+    summary: C++ flight software for autonomous fixed-wing agricultural UAVs.
+    bullets:
+      - text: "Worked with entire C++ flight computer code base, with a focus on the flight controller, path planner, simulator, and testing environment"
+        tags: [software, cpp, flight-controller, autopilot, simulation]
+        priority: 1
+      - text: "Developed system to incorporate RTK corrections with aircraft INS by means of custom NTRIP caster"
+        tags: [software, gps, navigation, embedded]
+        priority: 2
+      - text: "Built and supported several Python-based GUI tools that replaced command line interfaces"
+        tags: [software, python, tooling, flight-test]
+        priority: 2
+      - text: "Performed ongoing refactoring efforts to improve code maintainability and orthogonality"
+        tags: [software, code-quality, cpp]
+        priority: 3
+
+  - name: COPPERPUNK
+    position: Founder, Engineer
+    startDate: "2020-05"
+    endDate: "2022-01"
+    summary: Personal R&D company developing an open autopilot platform for multiple vehicle types.
+    bullets:
+      - text: "Developed and validated Elixir-based autopilot for fixed-wing, multirotor, and ground vehicles"
+        tags: [software, autopilot, elixir, uav]
+        priority: 1
+      - text: "Wrote Arduino and Elixir-based device drivers to interface with autopilot sensors and actuators"
+        tags: [software, embedded, arduino, elixir, firmware, drivers]
+        priority: 1
+      - text: "Created hardware-in-the-loop testing environment to maximize autopilot test coverage"
+        tags: [software, testing, simulation, embedded]
+        priority: 2
+      - text: "Utilized OpenCV to perform high-level autonomy tasks"
+        tags: [software, computer-vision, autonomous-systems]
+        priority: 2
+      - text: "Integrated autopilot with RealFlight and X-Plane flight simulators"
+        tags: [software, simulation, autopilot]
+        priority: 3
+
+  - name: Zone 5 Technologies
+    position: Aerospace Engineer
+    startDate: "2020-02"
+    endDate: "2020-05"
+    summary: Short-term contract supporting flight software and testing for an experimental tilt-wing UAV.
+    bullets:
+      - text: "Adapted Pixhawk source code to interface custom electric motors with UAVCAN driver"
+        tags: [software, embedded, pixhawk, firmware, uavcan, cpp]
+        priority: 1
+      - text: "Supported software validation and flight test program for experimental tilt-wing UAV"
+        tags: [flight-test, uav, software]
+        priority: 2
+
+  - name: Kitty Hawk
+    position: Software Engineer
+    startDate: "2019-09"
+    endDate: "2020-02"
+    summary: Software development for eVTOL vehicles on embedded ROS systems.
+    bullets:
+      - text: "Contributed to C++ vehicle software running ROS on embedded Jetson TX2"
+        tags: [software, cpp, ros, embedded]
+        priority: 1
+      - text: "Designed software and hardware prototype components as needed to assist with vehicle testing"
+        tags: [software, hardware, flight-test, prototyping]
+        priority: 2
+      - text: "Programmed and integrated Arduino-based components to assist with vehicle testing"
+        tags: [software, embedded, arduino, flight-test]
+        priority: 2
+      - text: "Earned Self-Driving Car Engineer Nanodegree from Udacity while working full-time"
+        tags: [autonomous-systems, machine-learning]
+        priority: 4
+
+  - name: Kitty Hawk
+    position: Senior Flight Test Engineer
+    startDate: "2018-06"
+    endDate: "2019-09"
+    summary: Flight test operations for subscale and full-scale multirotor eVTOL vehicles.
+    bullets:
+      - text: "Operated flight test cell for subscale and full-scale multirotor vehicles"
+        tags: [flight-test, uav, multirotor]
+        priority: 1
+      - text: "Developed feature software related to vehicle control and performance"
+        tags: [software, flight-controller]
+        priority: 2
+      - text: "Collaborated with hardware and software engineers to ensure complete test coverage"
+        tags: [flight-test, collaboration]
+        priority: 3
+
+  - name: PHAEROH
+    position: Founder, Engineer
+    startDate: "2014-07"
+    endDate: "2018-06"
+    summary: Founded UAV startup developing autonomous fixed-wing aircraft for precision agriculture.
+    bullets:
+      - text: "Developed and validated Java-based fixed-wing autopilot that ran on an Android smartphone"
+        tags: [software, autopilot, java, uav, embedded]
+        priority: 1
+      - text: "Designed small, uncrewed fixed-wing aircraft for precision agriculture data collection"
+        tags: [hardware, uav, aerospace, design]
+        priority: 1
+      - text: "Incorporated MATLAB-based 6-DOF simulation to verify autopilot path planning algorithms"
+        tags: [software, simulation, matlab, autopilot]
+        priority: 2
+      - text: "Created C++/Arduino-based multirotor flight controller"
+        tags: [software, embedded, cpp, arduino, flight-controller]
+        priority: 2
+      - text: "Adapted MAVLink protocol to create an Arduino-based communication bridge between Pixhawk autopilot and companion computer / ground station"
+        tags: [software, embedded, arduino, mavlink, pixhawk]
+        priority: 2
+      - text: "Installed and operated Pixhawk autopilots in several fixed-wing and multirotor vehicles"
+        tags: [hardware, pixhawk, autopilot, uav]
+        priority: 3
+      - text: "Piloted experimental fixed-wing and multirotor aircraft"
+        tags: [flight-test, uav, piloting]
+        priority: 4
+
+  - name: Specialized Air Services, Inc.
+    position: Aerospace Engineer, Flight Test
+    startDate: "2011-11"
+    endDate: "2014-07"
+    summary: UAV engineering, manufacturing, and flight test at a small aerospace company.
+    bullets:
+      - text: "Designed and built experimental fixed-wing UAVs, devising innovative construction techniques to enable shorter development cycles"
+        tags: [hardware, uav, aerospace, manufacturing, design]
+        priority: 1
+      - text: "Designed, assembled, and validated fully autonomous fixed-wing autopilot, conducted all vehicle tests, and analyzed ground and flight test data in the field to facilitate rapid software development"
+        tags: [software, autopilot, flight-test, uav]
+        priority: 1
+      - text: "Installed and integrated UAV avionics: fabricating connectors, managing logic levels, and generating or modifying host processor software"
+        tags: [hardware, embedded, avionics, software]
+        priority: 2
+      - text: "Collaborated with customers to design and produce functional prototypes, refining component layouts to satisfy strict volume constraints"
+        tags: [hardware, prototyping, design, customer-facing]
+        priority: 2
+      - text: "Assisted in the manufacturing of solar-powered UAV airframes, assembling and installing solar panel arrays, and participating in composite layups"
+        tags: [hardware, manufacturing, uav, composite]
+        priority: 3
+      - text: "Served as test pilot for experimental R/C aircraft, both fixed-wing and multirotor"
+        tags: [flight-test, uav, piloting]
+        priority: 3
+
+  - name: Air Force Flight Test Center
+    position: Flight Test Engineer
+    startDate: "2008-09"
+    endDate: "2011-11"
+    summary: Flight test engineering at Edwards AFB supporting envelope expansion and evaluation programs.
+    bullets:
+      - text: "Served as flying qualities engineer on Global Hawk Block 20/30 envelope expansion test program"
+        tags: [flight-test, aerospace, uav]
+        priority: 1
+      - text: "Developed MATLAB scripts to analyze test data in near real-time, reducing the turnaround between tests by several days"
+        tags: [software, matlab, data-analysis, flight-test]
+        priority: 1
+      - text: "Drafted and executed test plan to evaluate DG-1001 gliders for use in the United States Air Force Academy glider training program and authored final report summarizing test results"
+        tags: [flight-test, aerospace, test-planning]
+        priority: 2
+      - text: "Supported several Global Hawk missions in the control room, overseeing the completion of test points, and monitoring overall aircraft performance"
+        tags: [flight-test, aerospace, uav]
+        priority: 3
+
+skills:
+  - name: AI & Agents
+    level: Intermediate
+    keywords: [LLMs, LangGraph, LangSmith, computer vision, Claude Code]
+  - name: Software
+    level: Advanced
+    keywords: [C++, Python, Elixir, Java, Arduino, C#, ROS, MATLAB]
+  - name: Embedded Systems
+    level: Advanced
+    keywords: [UART, I2C, SPI, PWM, CAN, MAVLink, Pixhawk, UAVCAN]
+  - name: CAD & Manufacturing
+    level: Intermediate
+    keywords: [Onshape, Fusion 360, SolidWorks, Autodesk Inventor, 3D printing, laser cutting, CNC routing, PCB design, composite layup]
+  - name: Aerospace & UAV
+    level: Expert
+    keywords: [UAV design, flight test, fixed-wing, multirotor, autopilot, autonomous systems, flight controller, Pixhawk, MAVLink]
+  - name: Simulation & Analysis
+    level: Intermediate
+    keywords: [X-Plane, RealFlight, hardware-in-the-loop, XFOIL, QPROP, MATLAB, OpenCV]
+  - name: Practices
+    level: Intermediate
+    keywords: [TDD, CI/CD, refactoring, soldering, crimping]
+
+education:
+  - institution: California Polytechnic State University, San Luis Obispo
+    area: Aerospace Engineering
+    studyType: M.S.
+    endDate: "2011-06"
+  - institution: California Polytechnic State University, San Luis Obispo
+    area: Aerospace Engineering
+    studyType: B.S.
+    endDate: "2008-06"
+
+publications:
+  - name: "Autonomous UAS Controlled by Onboard Smartphone"
+    publisher: "ICUAS 2015"
+    releaseDate: "2015-07-01"
+    url: https://doi.org/10.1109/ICUAS.2015.7152322
+    summary: Describes a fixed-wing UAV autopilot implemented entirely on an Android smartphone, covering sensor integration, control algorithms, and flight test results.
+  - name: "United States Air Force Academy TG-16A Training Glider Qualification Test and Evaluation"
+    publisher: "Air Force Flight Test Center"
+    releaseDate: "2011-09-01"
+    summary: "Qualification test and evaluation of the TG-16A glider for USAFA training, covering safety, performance, aerobatics, and curriculum suitability. (AFFTC-TR-11-66)"
+  - name: "Designing the Human-Powered Helicopter: A New Perspective"
+    publisher: "Cal Poly SLO"
+    releaseDate: "2011-06-01"
+    summary: Master's thesis exploring rotor design attributes and their effects on low-power helicopter performance, using MATLAB integrated with XFOIL and QPROP.
