@@ -84,12 +84,11 @@ Reorder if the JD clearly emphasizes something else:
 
 ## 5. Page Fitting
 
-Target: **exactly 2 pages** (US Letter).
+Target: **up to 2 pages** (US Letter).
 
 After first draft:
 - **Over 2 pages**: remove bullets from oldest or least relevant roles first, then trim less-relevant sections entirely
-- **Under 1.5 pages**: add more bullets from the most relevant roles (still within the `bullets[]` pool), or add an omitted section if it has relevant content
-- **Between 1.5–2 pages**: acceptable, leave as-is
+- **Under 2 pages**: acceptable — do not pad content just to fill space
 
 You cannot know page length without rendering — use judgment based on bullet count:
 - A typical 2-page resume fits ~18–24 bullets across all jobs
@@ -134,10 +133,10 @@ education:
 ### 6b. Generate PDF
 
 ```bash
-python scripts/generate.py \
-  --data jobs/<company>/<role>/tailored.yaml \
-  --output jobs/<company>/<role>/resume.pdf \
-  --keep-html
+python scripts/generate.py --data jobs/<company>/<role>/tailored.yaml --keep-html
+# First run: prompts for template selection and output path, saves to .generate.yaml
+# Subsequent runs: uses saved settings automatically
+# To change template: add --reconfigure flag
 ```
 
 ### 6c. Verify
@@ -169,6 +168,6 @@ You:
 2. Analyze JD: key themes = reliability, SLOs, on-call, Kubernetes, Go/Python
 3. Select bullets emphasizing SRE, distributed systems, reliability work
 4. Write jobs/google/sre/tailored.yaml
-5. Run: python scripts/generate.py --data jobs/google/sre/tailored.yaml --output jobs/google/sre/resume.pdf --keep-html
+5. Run: python scripts/generate.py --data jobs/google/sre/tailored.yaml --keep-html
 6. Confirm: pdfinfo jobs/google/sre/resume.pdf → 2 pages
 ```

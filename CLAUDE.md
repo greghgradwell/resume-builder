@@ -19,7 +19,7 @@ When asked to add a new job or work experience, ALWAYS read ADDING_EXPERIENCE.md
 
 ## Commands
 - `python scripts/fetch_fonts.py` — Download/update Google Fonts
-- `python scripts/generate.py --data <yaml> --output <path>` — Generate PDF from YAML
+- `python scripts/generate.py --data <yaml> [--keep-html] [--reconfigure]` — Generate PDF (interactive on first run)
 - `python scripts/render.py --data <yaml> --output <path>` — Render HTML only
 - `python scripts/pdf.py --input <html> --output <path>` — Convert HTML to PDF
 
