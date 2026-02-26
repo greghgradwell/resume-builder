@@ -37,6 +37,8 @@ def save_sidecar(data_path: Path, template: str, output: str) -> None:
 
 def prompt_settings(data_path: Path) -> tuple[str, Path]:
     templates = list_templates()
+    if not templates:
+        raise RuntimeError(f"No templates found in {TEMPLATES_DIR}")
     print("\nAvailable templates:\n")
     for i, t in enumerate(templates, 1):
         print(f"  {i}. {t['name']:<12} — {t['description']}")
