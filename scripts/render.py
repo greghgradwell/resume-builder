@@ -1,6 +1,4 @@
 #!/usr/bin/env python3
-"""Render a resume YAML data file to HTML using Jinja2 templates."""
-
 import argparse
 from datetime import datetime
 from pathlib import Path
@@ -35,9 +33,9 @@ def strip_scheme(url: str) -> str:
     return url
 
 
-def build_jinja_env() -> Environment:
+def build_jinja_env(template_dir: Path) -> Environment:
     env = Environment(
-        loader=FileSystemLoader(str(TEMPLATES_DIR)),
+        loader=FileSystemLoader([str(template_dir), str(TEMPLATES_DIR)]),
         autoescape=False,
     )
     env.filters["format_date"] = format_date
@@ -45,18 +43,15 @@ def build_jinja_env() -> Environment:
     return env
 
 
-def render_html(
-    data: dict,
-    template_name: str = "resume.html",
-    theme: str = "modern",
-) -> str:
-    env = build_jinja_env()
-    template = env.get_template(template_name)
-    return template.render(
+def render_html(data: dict, template: str = "modern") -> str:
+    template_dir = TEMPLATES_DIR / template
+    env = build_jinja_env(template_dir)
+    tmpl = env.get_template("resume.html")
+    return tmpl.render(
         data=data,
         fonts_css_path=str(FONTS_CSS),
-        base_css_path=str(TEMPLATES_DIR / "styles" / "base.css"),
-        theme_css_path=str(TEMPLATES_DIR / "styles" / f"{theme}.css"),
+        base_css_path=str(TEMPLATES_DIR / "base.css"),
+        style_css_path=str(template_dir / "style.css"),
     )
 
 
@@ -69,12 +64,11 @@ def main():
     parser = argparse.ArgumentParser(description="Render resume YAML to HTML")
     parser.add_argument("--data", required=True, help="Path to resume YAML file")
     parser.add_argument("--output", required=True, help="Output HTML file path")
-    parser.add_argument("--template", default="resume.html", help="Template file name")
-    parser.add_argument("--theme", default="modern", help="Theme CSS name (without .css)")
+    parser.add_argument("--template", default="modern", help="Template name (folder in templates/)")
     args = parser.parse_args()
 
     data = load_yaml(args.data)
-    html = render_html(data, template_name=args.template, theme=args.theme)
+    html = render_html(data, template=args.template)
 
     output_path = Path(args.output)
     output_path.parent.mkdir(parents=True, exist_ok=True)
