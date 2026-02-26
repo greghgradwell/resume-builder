@@ -1,27 +1,88 @@
 #!/usr/bin/env python3
-"""Generate a PDF resume from a YAML data file in one step."""
-
 import argparse
 import tempfile
 from pathlib import Path
 
+import yaml
+
 from pdf import generate_pdf
 from render import load_yaml, render_html
+
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+TEMPLATES_DIR = PROJECT_ROOT / "templates"
+SIDECAR_NAME = ".generate.yaml"
+
+
+def list_templates() -> list[dict]:
+    templates = []
+    for d in sorted(TEMPLATES_DIR.iterdir()):
+        meta_file = d / "meta.yaml"
+        if d.is_dir() and meta_file.exists():
+            meta = yaml.safe_load(meta_file.read_text())
+            templates.append({**meta, "name": d.name})
+    return templates
+
+
+def load_sidecar(data_path: Path) -> dict | None:
+    sidecar = data_path.parent / SIDECAR_NAME
+    if sidecar.exists():
+        return yaml.safe_load(sidecar.read_text())
+    return None
+
+
+def save_sidecar(data_path: Path, template: str, output: str) -> None:
+    sidecar = data_path.parent / SIDECAR_NAME
+    sidecar.write_text(yaml.dump({"output": output, "template": template}))
+
+
+def prompt_settings(data_path: Path) -> tuple[str, Path]:
+    templates = list_templates()
+    print("\nAvailable templates:\n")
+    for i, t in enumerate(templates, 1):
+        print(f"  {i}. {t['name']:<12} — {t['description']}")
+
+    while True:
+        raw = input("\nSelect template [1]: ").strip() or "1"
+        try:
+            idx = int(raw) - 1
+            if 0 <= idx < len(templates):
+                chosen = templates[idx]["name"]
+                break
+        except ValueError:
+            pass
+        print(f"  Enter a number between 1 and {len(templates)}.")
+
+    default_output = data_path.parent / "resume.pdf"
+    raw_output = input(f"Output path [{default_output}]: ").strip()
+    output_path = Path(raw_output) if raw_output else default_output
+
+    return chosen, output_path
 
 
 def main():
     parser = argparse.ArgumentParser(description="Generate PDF resume from YAML")
     parser.add_argument("--data", required=True, help="Path to resume YAML file")
-    parser.add_argument("--output", required=True, help="Output PDF file path")
-    parser.add_argument("--theme", default="modern", help="Theme CSS name (without .css)")
+    parser.add_argument("--reconfigure", action="store_true", help="Re-prompt even if .generate.yaml exists")
     parser.add_argument("--keep-html", action="store_true", help="Also save the HTML alongside the PDF")
     args = parser.parse_args()
 
-    output_path = Path(args.output)
-    output_path.parent.mkdir(parents=True, exist_ok=True)
+    data_path = Path(args.data).resolve()
+    sidecar = None if args.reconfigure else load_sidecar(data_path)
 
-    data = load_yaml(args.data)
-    html = render_html(data, theme=args.theme)
+    if sidecar:
+        template = sidecar["template"]
+        output_path = data_path.parent / sidecar["output"]
+        print(f"\nUsing saved settings ({SIDECAR_NAME}):")
+        print(f"  template: {template}")
+        print(f"  output:   {output_path}\n")
+    else:
+        template, output_path = prompt_settings(data_path)
+        save_sidecar(data_path, template, output_path.name)
+        print(f"\nSaved settings to {data_path.parent / SIDECAR_NAME}\n")
+
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    data = load_yaml(str(data_path))
+    html = render_html(data, template=template)
 
     if args.keep_html:
         html_path = output_path.with_suffix(".html")
