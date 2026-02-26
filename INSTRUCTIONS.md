@@ -143,7 +143,7 @@ python scripts/generate.py --data jobs/<company>/<role>/tailored.yaml --keep-htm
 
 After generation:
 - Confirm the PDF exists and is non-zero bytes
-- Check `pdfinfo jobs/<company>/<role>/resume.pdf` shows 2 pages
+- Check `pdfinfo jobs/<company>/<role>/resume.pdf` shows 1 or 2 pages
 
 ---
 
@@ -169,5 +169,5 @@ You:
 3. Select bullets emphasizing SRE, distributed systems, reliability work
 4. Write jobs/google/sre/tailored.yaml
 5. Run: python scripts/generate.py --data jobs/google/sre/tailored.yaml --keep-html
-6. Confirm: pdfinfo jobs/google/sre/resume.pdf → 2 pages
+6. Confirm: pdfinfo jobs/google/sre/resume.pdf → 1 or 2 pages
 ```
