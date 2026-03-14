@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+node_modules/
+*.pdf
+jobs/**/*.html
+.env
+instance/
+.vscode/
+docs/job_descriptions/
+docs/resume_source_material/

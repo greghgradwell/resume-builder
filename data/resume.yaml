@@ -1,0 +1,219 @@
+basics:
+  name: Robin Codewright
+  label: Senior Software Engineer
+  email: robin@example.com
+  phone: "555.123.4567"
+  location:
+    city: Portland
+    region: OR
+    countryCode: US
+  profiles:
+    - network: GitHub
+      username: robincodewright
+      url: https://github.com/robincodewright
+    - network: LinkedIn
+      username: robincodewright
+      url: https://linkedin.com/in/robincodewright
+
+work:
+  - name: Nimbus Labs
+    position: Senior Software Engineer
+    startDate: "2023-01"
+    summary: Cloud infrastructure startup building developer tools for multi-cloud deployments.
+    bullets:
+      - id: 4a7f2c81
+        text: "Led migration of monolithic API to event-driven microservices using Go and NATS, reducing p99 latency by 40%"
+        tags: [software, go, microservices, cloud, architecture]
+        priority: 1
+      - id: 8b3e1d56
+        text: "Designed and implemented Terraform provider for proprietary cloud orchestration layer"
+        tags: [software, devops, terraform, cloud, go]
+        priority: 1
+      - id: c2f94a0e
+        text: "Built real-time cost anomaly detection pipeline using Kafka Streams and PostgreSQL"
+        tags: [software, data, kafka, postgresql, cloud]
+        priority: 2
+      - id: 17d6e3b9
+        text: "Mentored team of four junior engineers through architecture reviews and pair programming sessions"
+        tags: [leadership, mentoring]
+        priority: 2
+      - id: e5a08f72
+        text: "Established automated load testing framework with k6 integrated into CI/CD pipeline"
+        tags: [software, testing, devops, ci-cd]
+        priority: 2
+      - id: 3f1b7c44
+        text: "Implemented distributed tracing across 12 microservices using OpenTelemetry and Jaeger"
+        tags: [software, observability, devops, microservices]
+        priority: 3
+
+  - name: Nimbus Labs
+    position: Software Engineer
+    startDate: "2021-03"
+    endDate: "2023-01"
+    summary: Early engineer building core platform services for cloud infrastructure management.
+    bullets:
+      - id: 91a2d4f7
+        text: "Developed REST API gateway handling 50k requests per second using Go and Redis"
+        tags: [software, go, api, redis, cloud]
+        priority: 1
+      - id: f6c83b21
+        text: "Created CLI tool for infrastructure provisioning adopted by 200+ enterprise customers"
+        tags: [software, go, cli, tooling, cloud]
+        priority: 1
+      - id: 2e7d0a95
+        text: "Built webhook delivery system with at-least-once guarantees using PostgreSQL and background workers"
+        tags: [software, distributed-systems, postgresql]
+        priority: 2
+      - id: a4b15e38
+        text: "Wrote comprehensive integration test suite covering multi-cloud provisioning workflows"
+        tags: [software, testing, cloud]
+        priority: 3
+
+  - name: Verdant Systems
+    position: Backend Engineer
+    startDate: "2019-06"
+    endDate: "2021-03"
+    summary: IoT platform connecting industrial sensors to cloud analytics dashboards.
+    bullets:
+      - id: 7c4e82d1
+        text: "Designed MQTT broker integration processing 100k sensor messages per minute into TimescaleDB"
+        tags: [software, iot, mqtt, embedded, data]
+        priority: 1
+      - id: d3f1a6b9
+        text: "Built device firmware update system with rollback capabilities for 10k+ deployed sensors"
+        tags: [software, embedded, iot, firmware]
+        priority: 1
+      - id: 5b92c7e4
+        text: "Implemented role-based access control system supporting multi-tenant device hierarchies"
+        tags: [software, security, api, python]
+        priority: 2
+      - id: 08e5d1a3
+        text: "Created Python SDK for third-party developers to integrate with sensor data streams"
+        tags: [software, python, sdk, api]
+        priority: 2
+      - id: b6a43f10
+        text: "Optimized time-series query engine reducing dashboard load times from 8 seconds to under 500ms"
+        tags: [software, data, performance, postgresql]
+        priority: 2
+      - id: ec71f5d8
+        text: "Deployed Kubernetes-based staging environment with automated database seeding from production snapshots"
+        tags: [software, devops, kubernetes, cloud]
+        priority: 3
+
+  - name: Pixelweave
+    position: Full Stack Developer
+    startDate: "2017-09"
+    endDate: "2019-06"
+    summary: Digital agency building custom web applications for e-commerce and media clients.
+    bullets:
+      - id: a1d23b47
+        text: "Developed React component library used across 15 client projects, reducing frontend development time by 30%"
+        tags: [software, web, react, javascript, frontend]
+        priority: 1
+      - id: 42fc8e19
+        text: "Built Node.js payment processing service integrating Stripe and PayPal for e-commerce platform"
+        tags: [software, web, node, javascript, api]
+        priority: 1
+      - id: d8b3f2c6
+        text: "Implemented server-side rendering pipeline with Next.js improving SEO scores by 60 points"
+        tags: [software, web, react, javascript, performance]
+        priority: 2
+      - id: 6e5a0d91
+        text: "Created automated visual regression testing system using Puppeteer and Percy"
+        tags: [software, testing, web, ci-cd]
+        priority: 2
+      - id: 1f7c4b83
+        text: "Migrated legacy jQuery applications to React with zero downtime using incremental adoption strategy"
+        tags: [software, web, react, javascript]
+        priority: 3
+
+  - name: DataForge Inc
+    position: Software Engineer
+    startDate: "2015-08"
+    endDate: "2017-09"
+    summary: Data engineering consultancy building ETL pipelines and analytics platforms for enterprise clients.
+    bullets:
+      - id: 73e9b1d5
+        text: "Built Apache Spark pipelines processing 2TB of daily transaction data for financial reporting"
+        tags: [software, data, spark, python, cloud]
+        priority: 1
+      - id: c4a260f8
+        text: "Designed data warehouse schema supporting real-time and batch analytics on AWS Redshift"
+        tags: [software, data, aws, cloud, sql]
+        priority: 1
+      - id: 9d2f47b3
+        text: "Developed Airflow DAGs orchestrating 40+ ETL jobs with dependency management and alerting"
+        tags: [software, data, python, devops]
+        priority: 2
+      - id: 5e8c13a6
+        text: "Created data quality validation framework catching schema drift before pipeline failures"
+        tags: [software, data, testing, python]
+        priority: 2
+      - id: b71d5e29
+        text: "Wrote Python client library for internal data catalog API used by 50+ analysts"
+        tags: [software, python, tooling, api]
+        priority: 3
+
+  - name: Ironclad Software
+    position: Junior Developer
+    startDate: "2013-06"
+    endDate: "2015-08"
+    summary: Enterprise software company providing document management and workflow automation solutions.
+    bullets:
+      - id: 2a4b8f61
+        text: "Developed RESTful API endpoints for document versioning system serving 500 concurrent users"
+        tags: [software, api, java, web]
+        priority: 1
+      - id: f3d17c42
+        text: "Implemented full-text search functionality using Elasticsearch across 10M+ document repository"
+        tags: [software, java, search, data]
+        priority: 1
+      - id: 8e6c2a95
+        text: "Built automated deployment pipeline using Jenkins reducing release cycle from 2 weeks to 2 days"
+        tags: [software, devops, ci-cd, jenkins]
+        priority: 2
+      - id: 14b9d7e3
+        text: "Wrote unit and integration tests achieving 85% code coverage on document processing module"
+        tags: [software, testing, java]
+        priority: 3
+      - id: c7f51a08
+        text: "Participated in on-call rotation monitoring production systems and resolving incidents"
+        tags: [software, devops, operations]
+        priority: 4
+
+skills:
+  - name: Languages
+    level: Advanced
+    keywords: [Go, Python, TypeScript, JavaScript, Java, SQL, Bash]
+  - name: Cloud & Infrastructure
+    level: Advanced
+    keywords: [AWS, Terraform, Kubernetes, Docker, Linux, NATS, Kafka]
+  - name: Web & API
+    level: Advanced
+    keywords: [React, Next.js, Node.js, REST, GraphQL, gRPC, Redis]
+  - name: Data & Storage
+    level: Intermediate
+    keywords: [PostgreSQL, TimescaleDB, Elasticsearch, Apache Spark, Airflow, Redshift]
+  - name: DevOps & Observability
+    level: Intermediate
+    keywords: [CI/CD, GitHub Actions, Jenkins, OpenTelemetry, Jaeger, Grafana, k6]
+  - name: Practices
+    level: Intermediate
+    keywords: [TDD, code review, architecture docs, agile, incident response]
+
+education:
+  - institution: Cascadia University
+    area: Computer Science
+    studyType: M.S.
+    endDate: "2013-06"
+  - institution: Cascadia University
+    area: Computer Science
+    studyType: B.S.
+    endDate: "2011-06"
+
+publications:
+  - name: "Scaling Event-Driven Architectures: Patterns for Multi-Cloud Message Routing"
+    publisher: "International Conference on Distributed Systems (ICDS)"
+    releaseDate: "2024-03-15"
+    url: https://example.com/papers/multi-cloud-routing
+    summary: Describes patterns for routing messages across cloud providers with ordering guarantees, covering broker federation, idempotent consumers, and failure recovery strategies.
