@@ -151,6 +151,7 @@ python scripts/generate.py --data jobs/<company>/<role>/tailored.yaml --keep-htm
 After generation:
 - Confirm the PDF exists and is non-zero bytes
 - Check page count: `generate.py` prints the page count; if `pdfinfo` is available, use `pdfinfo jobs/<company>/<role>/resume.pdf` to confirm 1 or 2 pages
+- Offer to analyze coverage: **"Want me to check how well this covers the job description? I can identify gaps and suggest improvements."** If yes, follow `ANALYZING.md`.
 
 ---
 

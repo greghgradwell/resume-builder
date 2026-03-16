@@ -79,11 +79,15 @@ For requirements marked "gap" (no matching bullet exists anywhere in the master)
 - Identify companies or roles where this experience **might** plausibly exist but was never written as a bullet
 - For each candidate, ask a specific, targeted question:
 
-> "You worked at [Company] as [Role] — did you [specific activity related to the requirement]? If so, this could be a new bullet via ADDING_EXPERIENCE.md."
+> "You worked at [Company] as [Role] — did you [specific activity related to the requirement]?"
 
 Do not invent bullets. Do not assume the experience exists. Only ask — the user confirms or denies.
 
 If no plausible candidate exists in the work history, note the requirement as a **true gap** (no relevant experience to draw from).
+
+### After the report
+
+If the user confirms they have experience for any gap, offer to add it immediately: **"Want to add that as a bullet? I'll walk you through it."** Then follow `ADDING_EXPERIENCE.md` Phase 2 (Shape Bullets) for that specific bullet — the interview questions aren't needed since the user just described the experience. Once the new bullet is in the master, offer to update the tailored resume to include it.
 
 ---
 
@@ -123,7 +127,7 @@ Present the full report at once, then wait. Do not start making changes until th
 ## 8. Hard Rules — NEVER VIOLATE
 
 1. **Never invent bullets or skills** — only suggest content that exists verbatim in `data/resume.yaml`
-2. **Never modify files** — do not touch `tailored.yaml`, `data/resume.yaml`, or any other file during analysis
+2. **Never modify files during analysis** — present the full report first, then wait for the user to decide what to change
 3. **Never skip reading the master** — partial analysis based only on the tailored resume is not acceptable
 4. **Never assume experience** — gap questions are questions, not assertions; the user confirms what they actually did
 5. **Always present the full report before acting** — wait for the user to decide which suggestions to implement
