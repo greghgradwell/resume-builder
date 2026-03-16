@@ -40,7 +40,7 @@ Write a brief internal summary of these before proceeding to coverage analysis.
 
 For each extracted requirement, determine coverage in the tailored resume:
 
-- **Strong** — one or more highlights directly address this requirement with specific evidence
+- **Strong** — one or more bullets directly address this requirement with specific evidence
 - **Partial** — the tailored resume touches the theme but doesn't name the technology or doesn't give evidence
 - **Weak** — the requirement is implied by a job title or section header but not demonstrated in a bullet
 - **Missing** — nothing in the tailored resume addresses this requirement
@@ -59,7 +59,7 @@ Use tags and bullet text to determine relevance — a bullet tagged `[cpp, embed
 From the master resume, identify bullets that:
 
 1. Match a JD requirement (by tag, technology name, or theme)
-2. Were **not** included in the tailored resume's `highlights`
+2. Were **not** included in the tailored resume's `highlight_ids`
 
 For each such bullet, recommend:
 - Which role it comes from
@@ -99,7 +99,7 @@ Produce a structured report in this format:
 [One sentence rationale for the score.]
 
 ### Coverage Table
-| JD Requirement | Status | Evidence (role + highlight) |
+| JD Requirement | Status | Evidence (role + bullet) |
 |---|---|---|
 | Go development | Strong | Nimbus Labs: "Led migration of monolithic API..." |
 | ADAS experience | Missing | — |

@@ -112,7 +112,8 @@ work:
     highlight_ids: [a1b2c3d4, e5f6a7b8]
   - name: Some Corp
     highlight_ids: [c9d0e1f2]
-  # If a company appears twice in master (different roles), add position: to disambiguate:
+  # If a company appears more than once in master (e.g. promotion), position: is REQUIRED on
+  # every entry for that company to disambiguate — omitting it will cause a generation error:
   - name: Nimbus Labs
     position: Software Engineer
     highlight_ids: [91a2d4f7, f6c83b21]
@@ -149,7 +150,7 @@ python scripts/generate.py --data jobs/<company>/<role>/tailored.yaml --keep-htm
 
 After generation:
 - Confirm the PDF exists and is non-zero bytes
-- Check `pdfinfo jobs/<company>/<role>/resume.pdf` shows 1 or 2 pages
+- Check page count: `generate.py` prints the page count; if `pdfinfo` is available, use `pdfinfo jobs/<company>/<role>/resume.pdf` to confirm 1 or 2 pages
 
 ---
 

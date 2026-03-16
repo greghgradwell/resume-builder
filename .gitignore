@@ -8,5 +8,7 @@ jobs/**/*.html
 .env
 instance/
 .vscode/
-docs/job_descriptions/
-docs/resume_source_material/
+docs/job_descriptions/*
+!docs/job_descriptions/.gitkeep
+docs/resume_source_material/*
+!docs/resume_source_material/.gitkeep

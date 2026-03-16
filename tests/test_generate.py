@@ -1,7 +1,6 @@
-from pathlib import Path
 import pytest
 import yaml
-from generate import load_sidecar, save_sidecar, list_templates, prompt_settings, resolve_tailored, PROJECT_ROOT
+from generate import load_sidecar, save_sidecar, list_templates, prompt_settings, resolve_tailored
 
 
 def test_load_sidecar_returns_none_when_missing(tmp_path):
@@ -135,7 +134,9 @@ def test_resolve_tailored_no_publications_removes_key():
 def test_resolve_tailored_disambiguates_by_position():
     tailored = {
         "source": "data/resume.yaml",
-        "work": [{"name": "Dual Corp", "position": "Senior Engineer", "highlight_ids": ["bbbbbbbb"]}],
+        "work": [
+            {"name": "Dual Corp", "position": "Senior Engineer", "highlight_ids": ["bbbbbbbb"]}
+        ],
     }
     result = resolve_tailored(tailored, MASTER)
     assert result["work"][0]["highlights"] == ["Senior work"]
@@ -144,7 +145,10 @@ def test_resolve_tailored_disambiguates_by_position():
 def test_resolve_tailored_raises_on_duplicate_bullet_id():
     bad_master = {
         "work": [
-            {"name": "X", "bullets": [{"id": "dup00000", "text": "a"}, {"id": "dup00000", "text": "b"}]}
+            {
+                "name": "X",
+                "bullets": [{"id": "dup00000", "text": "a"}, {"id": "dup00000", "text": "b"}],
+            }
         ]
     }
     with pytest.raises(ValueError, match="Duplicate bullet ID 'dup00000'"):
@@ -190,6 +194,7 @@ def test_source_path_traversal_rejected(tmp_path):
 
     import yaml as _yaml
     from generate import PROJECT_ROOT as _root
+
     data = _yaml.safe_load(tailored_path.read_text())
     candidate = (_root / data["source"]).resolve()
     assert not candidate.is_relative_to(_root)

@@ -1,34 +1,66 @@
 # Resume Builder
 
-A YAML-based resume builder with AI-assisted tailoring. Maintain a single master resume with tagged, prioritized bullets — then use any AI CLI tool (Claude Code, Gemini CLI, Cursor, etc.) to select the best bullets for each job application and generate a polished PDF.
+A resume builder designed for use with AI CLI tools (Claude Code, Gemini CLI, Cursor, etc.). Feed in your existing resumes, and the AI aggregates them into a single master file — preserving your original wording. When applying for a job, the AI can help you select the most relevant bullets and generates a tailored PDF.
+
+You can't have AI slop if it's all your own words (if you write like a bot, I can't help you).
+
+## The Problem
+
+Over your career, you've probably written several resumes — each tailored for a different job, each cutting some experience to make room for other things. No single document has everything, and rebuilding from scratch every time means starting from an incomplete picture. Plus, formatting is a document editor is painful.
 
 ## How It Works
 
-1. **Master resume** (`data/resume.yaml`) — all your experience, skills, education, and publications in one file. Each bullet has a unique ID, tags, and a priority level.
-2. **Tailoring** — an AI assistant reads a job description, selects relevant bullets by ID, and writes a lightweight `tailored.yaml` that references the master.
-3. **PDF generation** — `generate.py` resolves the references, renders HTML via Jinja2 templates, and converts to PDF with WeasyPrint.
+1. **Import** — feed your existing resumes (PDFs, text, multiple files) to the AI. It extracts everything into a single master YAML file (`data/resume.yaml`) with tagged, prioritized bullets. Your original wording is preserved — the AI structures, it doesn't rewrite.
+2. **Add** — when you start a new job, the AI interviews you and helps you shape bullets. It's a copy editor, not a ghostwriter — you provide the words, it helps with structure and consistency.
+3. **Tailor** — paste a job description and ask the AI to tailor your resume. It selects the most relevant bullets by ID, orders them, and writes a lightweight reference file.
+4. **Generate** — the tool resolves references, renders HTML via Jinja2 templates, and produces a PDF with WeasyPrint.
 
-You never edit bullet text in tailored files. The master is the single source of truth.
+The boundary is simple: your *content* is sacred — your claims, your phrasing, your voice. The AI handles *organization* — categorizing skills, selecting bullets, ordering sections, formatting output. The result sounds like you because every word is yours.
+
+## Installation
+
+> **For the AI assistant:** follow these steps to set up the project. Ask the user for confirmation before creating a virtual environment or installing system packages.
+
+1. **Python virtual environment** — ask the user if they want a project-local venv (`.venv`) or a shared one elsewhere. Then create and activate it:
+   ```bash
+   python -m venv .venv && source .venv/bin/activate
+   ```
+
+2. **Python packages:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **WeasyPrint system dependencies** — these are required for PDF generation and need root privileges. Ask the user to run the appropriate command in their terminal:
+   ```bash
+   # Ubuntu/Debian
+   sudo apt install libpango1.0-dev libharfbuzz-dev libffi-dev
+
+   # macOS (Homebrew)
+   brew install pango libffi
+
+   # Other platforms: https://doc.courtbouillon.org/weasyprint/stable/first_steps.html
+   ```
+
+4. **Fonts:**
+   ```bash
+   python scripts/fetch_fonts.py
+   ```
 
 ## Quick Start
 
-```bash
-# Clone and set up
-git clone <repo-url> && cd resume-builder
-python -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
+Drop your existing resume PDFs/docs into `docs/resume_source_material/`, then tell your AI assistant:
 
-# Install WeasyPrint system dependencies (Ubuntu/Debian)
-sudo apt install libpango1.0-dev libharfbuzz-dev libffi-dev
+```
+"Import my resumes from docs/resume_source_material/"
+```
 
-# Download fonts
-python scripts/fetch_fonts.py
+The AI reads `IMPORT_EXISTING.md` and aggregates everything into `data/resume.yaml`. The more resumes you feed it, the more complete your master file.
 
-# Populate your resume
-# Edit data/resume.yaml with your real information (see the example data for structure)
+Once imported:
 
-# Generate a PDF from the example
-python scripts/generate.py --data jobs/example/software-engineer/tailored.yaml --keep-html
+```
+"Tailor my resume for this Software Engineer role at Acme Corp: <paste JD>"
 ```
 
 ## Project Structure
@@ -48,47 +80,48 @@ templates/
   base.html / base.css            # Shared template infrastructure
   modern/                         # "Modern" template (resume.html + style.css + meta.yaml)
 fonts/                            # Self-hosted font files (TTF/WOFF2)
-INSTRUCTIONS.md                   # AI tailoring workflow
-ADDING_EXPERIENCE.md              # AI interview workflow for new bullets
-ANALYZING.md                      # AI resume analysis workflow
+docs/resume_source_material/      # Your existing resumes go here (gitignored)
+docs/job_descriptions/            # Job descriptions for tailoring (gitignored)
 ```
 
-## AI-Assisted Tailoring
+## AI Workflows
 
-The `INSTRUCTIONS.md`, `ADDING_EXPERIENCE.md`, and `ANALYZING.md` files are structured prompts designed for AI CLI tools. They work with any tool that can read files and execute commands:
+This tool is designed to be used with an AI CLI tool. The workflow files are structured prompts that the AI reads and follows:
 
-- **Tailoring** — give your AI assistant a job description and ask it to tailor your resume. It reads `INSTRUCTIONS.md`, selects bullets by ID, and generates a PDF.
-- **Adding experience** — ask your AI to help add a new job. It reads `ADDING_EXPERIENCE.md` and runs an interactive interview to draft bullets.
-- **Analyzing** — ask your AI to evaluate a tailored resume against a job description. It reads `ANALYZING.md` and produces a coverage report.
+| Workflow               | Trigger                        | What it does                                              |
+| ---------------------- | ------------------------------ | --------------------------------------------------------- |
+| `IMPORT_EXISTING.md`   | "Import my resumes"            | Aggregates multiple existing resumes into the master YAML |
+| `INSTRUCTIONS.md`      | "Tailor my resume for..."      | Selects bullets for a job description, generates PDF      |
+| `ADDING_EXPERIENCE.md` | "Add my new job at..."         | Interactive interview to add a new role to the master     |
+| `ANALYZING.md`         | "Analyze my resume against..." | Evaluates a tailored resume's coverage of a JD            |
 
-Example: `"Tailor my resume for this Software Engineer role at Acme Corp: <paste JD>"`
+The AI tool picks up project context automatically via `CLAUDE.md`, `GEMINI.md`, or `.cursorrules`.
 
 ## Templates
 
-Templates live in `templates/<name>/` with `resume.html`, `style.css`, and `meta.yaml`. The first time you run `generate.py`, it prompts you to pick a template and saves the choice to `.generate.yaml`. Add `--reconfigure` to change templates later.
+Templates live in `templates/<name>/` with `resume.html`, `style.css`, and `meta.yaml`. The first time you generate a PDF, you're prompted to pick a template. Add `--reconfigure` to change later.
 
 ## Commands
 
 ```bash
 python scripts/generate.py --data <yaml> [--keep-html] [--reconfigure]  # Generate PDF
-python scripts/render.py --data <yaml> --output <path> --template modern # Render HTML only
+python scripts/render.py --data <yaml> --output <path>                    # Render HTML only
 python scripts/pdf.py --input <html> --output <path>                     # HTML → PDF
 python scripts/fetch_fonts.py                                            # Download fonts
 ```
 
-If you have [just](https://github.com/casey/just) installed:
+With [just](https://github.com/casey/just):
 
 ```bash
-just regen      # Regenerate the most recently modified tailored.yaml
-just generate <path>  # Generate a specific tailored resume
-just fonts      # Fetch/update fonts
+just regen              # Regenerate the most recently modified tailored.yaml
+just generate <path>    # Generate a specific tailored resume
+just fonts              # Fetch/update fonts
 ```
 
 ## Requirements
 
+- An AI CLI tool (Claude Code, Gemini CLI, Cursor, or similar)
 - Python 3.10+
-- WeasyPrint system dependencies ([installation guide](https://doc.courtbouillon.org/weasyprint/stable/first_steps.html))
-- Packages: `weasyprint`, `jinja2`, `pyyaml` (see `requirements.txt`)
 
 ## License
 
