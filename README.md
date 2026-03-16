@@ -1,12 +1,14 @@
 # Resume Builder
 
+## The Problem
+
+Over your career, you've probably written several resumes — each tailored for a different job, each cutting some experience to make room for other things. No single document has everything, and rebuilding from scratch every time means starting from an incomplete picture. Plus, formatting in a document editor is painful.
+
+## The Solution
+
 A resume builder designed for use with AI CLI tools (Claude Code, Gemini CLI, Cursor, etc.). Feed in your existing resumes, and the AI aggregates them into a single master file — preserving your original wording. When applying for a job, the AI can help you select the most relevant bullets and generates a tailored PDF.
 
 You can't have AI slop if it's all your own words (if you write like a bot, I can't help you).
-
-## The Problem
-
-Over your career, you've probably written several resumes — each tailored for a different job, each cutting some experience to make room for other things. No single document has everything, and rebuilding from scratch every time means starting from an incomplete picture. Plus, formatting is a document editor is painful.
 
 ## How It Works
 
