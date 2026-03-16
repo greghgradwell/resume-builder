@@ -1,7 +1,7 @@
 # Resume Builder
 
 ## Project Structure
-- `data/resume.yaml` — Master resume data (single source of truth)
+- `data/comprehensive_bio.yaml` — Master resume data (single source of truth)
 - `INSTRUCTIONS.md` — AI tailoring instructions (READ THIS for resume generation tasks)
 - `scripts/render.py` — HTML rendering
 - `scripts/pdf.py` — PDF generation
@@ -9,8 +9,8 @@
 - `scripts/fetch_fonts.py` — Font downloader
 - `templates/` — Jinja2 HTML templates and CSS
 - `fonts/` — Self-hosted font files (TTF/WOFF2)
-- `jobs/` — Generated resumes organized by company/role
-- `jobs/<company>/<role>/.generate.yaml` — Sidecar: saved template + output path (commit this)
+- `data/jobs/` — Generated resumes organized by company/role
+- `data/jobs/<company>/<role>/.generate.yaml` — Sidecar: saved template + output path (commit this)
 
 ## Resume Tailoring Workflow
 When asked to tailor a resume, ALWAYS read INSTRUCTIONS.md first and follow it exactly.

@@ -1,6 +1,6 @@
 # Adding a New Work Experience
 
-Instructions for an AI assistant to help the user add a new work entry to `data/resume.yaml`.
+Instructions for an AI assistant to help the user add a new work entry to `data/comprehensive_bio.yaml`.
 
 ---
 
@@ -55,7 +55,7 @@ Ask:
 
 ## Phase 2: Shape Bullets
 
-Before starting, **read `data/resume.yaml`** to understand the existing bullet style.
+Before starting, **read `data/comprehensive_bio.yaml`** to understand the existing bullet style.
 
 ### How this works
 
@@ -111,7 +111,7 @@ Once the user has approved every bullet in their own words:
 ```
 
 ### 2. Assign tags
-Tags should be lowercase, hyphen-separated, and drawn from or consistent with existing tags in `data/resume.yaml`.
+Tags should be lowercase, hyphen-separated, and drawn from or consistent with existing tags in `data/comprehensive_bio.yaml`.
 
 ### 3. Assign priority
 - `1` — core accomplishment, most likely to appear on any tailored resume
@@ -124,7 +124,7 @@ If the user identified new skills in Phase 1 Step 7, add them to the appropriate
 
 ### 5. Validate YAML
 ```bash
-python -c "import yaml; yaml.safe_load(open('data/resume.yaml'))"
+python -c "import yaml; yaml.safe_load(open('data/comprehensive_bio.yaml'))"
 ```
 
 No output = valid. Fix any errors before finishing.

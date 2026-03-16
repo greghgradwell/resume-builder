@@ -6,7 +6,7 @@ Instructions for Claude Code to evaluate a completed tailored resume against a j
 
 ## 1. Overview
 
-You are given a tailored resume (`tailored.yaml`), a job description, and access to the master resume (`data/resume.yaml`). Your task is to evaluate how well the tailored resume covers the JD, identify bullets from the master that should have been included, and flag requirements that no existing bullet addresses.
+You are given a tailored resume (`tailored.yaml`), a job description, and access to the master resume (`data/comprehensive_bio.yaml`). Your task is to evaluate how well the tailored resume covers the JD, identify bullets from the master that should have been included, and flag requirements that no existing bullet addresses.
 
 You analyze — never modify, never invent.
 
@@ -14,9 +14,9 @@ You analyze — never modify, never invent.
 
 ## 2. Inputs
 
-- **Tailored resume**: `jobs/<company>/<role>/tailored.yaml` — the resume to evaluate
-- **Job description**: PDF or docx from `docs/job_descriptions/`, or pasted inline by the user
-- **Master resume**: `data/resume.yaml` — read this in full to access the complete bullet pool
+- **Tailored resume**: `data/jobs/<company>/<role>/tailored.yaml` — the resume to evaluate
+- **Job description**: PDF or text from `data/jobs/<company>/<role>/`, or pasted inline by the user
+- **Master resume**: `data/comprehensive_bio.yaml` — read this in full to access the complete bullet pool
 
 Read all three before producing any output.
 
@@ -75,7 +75,7 @@ Limit suggestions to bullets that would meaningfully improve coverage — do not
 
 For requirements marked "gap" (no matching bullet exists anywhere in the master):
 
-- Review the work history and roles in `data/resume.yaml`
+- Review the work history and roles in `data/comprehensive_bio.yaml`
 - Identify companies or roles where this experience **might** plausibly exist but was never written as a bullet
 - For each candidate, ask a specific, targeted question:
 
@@ -126,7 +126,7 @@ Present the full report at once, then wait. Do not start making changes until th
 
 ## 8. Hard Rules — NEVER VIOLATE
 
-1. **Never invent bullets or skills** — only suggest content that exists verbatim in `data/resume.yaml`
+1. **Never invent bullets or skills** — only suggest content that exists verbatim in `data/comprehensive_bio.yaml`
 2. **Never modify files during analysis** — present the full report first, then wait for the user to decide what to change
 3. **Never skip reading the master** — partial analysis based only on the tailored resume is not acceptable
 4. **Never assume experience** — gap questions are questions, not assertions; the user confirms what they actually did

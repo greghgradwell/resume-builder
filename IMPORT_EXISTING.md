@@ -1,6 +1,6 @@
 # Importing Existing Resumes
 
-Instructions for an AI assistant to aggregate one or more existing resumes into `data/resume.yaml`.
+Instructions for an AI assistant to aggregate one or more existing resumes into `data/comprehensive_bio.yaml`.
 
 ---
 
@@ -17,7 +17,7 @@ You extract and structure — never embellish or invent. The user's original wor
 ## 2. Input
 
 The user provides one or more of:
-- PDF or docx files (e.g. `docs/resume_source_material/*.pdf`)
+- PDF or docx files (e.g. `hand_crafted_resumes/*.pdf`)
 - Text pasted inline
 - A LinkedIn export or similar structured data
 
@@ -29,7 +29,7 @@ Different resumes will contain different subsets of the user's experience — th
 
 ## 3. Read the Example
 
-Before writing anything, read `data/resume.yaml` — this ships with example data demonstrating the expected structure, field names, and formatting conventions. Your output will replace it and must match this structure precisely.
+Before writing anything, read `data/comprehensive_bio.yaml` — this ships with example data demonstrating the expected structure, field names, and formatting conventions. Your output will replace it and must match this structure precisely.
 
 ---
 
@@ -182,14 +182,18 @@ Revise until the user approves.
 
 Once approved:
 
-1. Write to `data/resume.yaml`
+1. Write to `data/comprehensive_bio.yaml`
 2. Validate:
 
 ```bash
-python -c "import yaml; yaml.safe_load(open('data/resume.yaml'))"
+python -c "import yaml; yaml.safe_load(open('data/comprehensive_bio.yaml'))"
 ```
 
 No output = valid. Fix any errors before finishing.
+
+3. Clean up example files — the import replaces `data/comprehensive_bio.yaml`, and the example input files are no longer needed:
+   - Delete PDFs in `hand_crafted_resumes/` with `(example)` in the name
+   - Delete `data/jobs/example/` directory
 
 ---
 

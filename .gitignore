@@ -4,11 +4,12 @@ __pycache__/
 venv/
 node_modules/
 *.pdf
-jobs/**/*.html
+!hand_crafted_resumes/*example*.pdf
+!data/jobs/example/**/*.pdf
+data/jobs/**/*.html
 .env
 instance/
 .vscode/
-docs/job_descriptions/*
-!docs/job_descriptions/.gitkeep
-docs/resume_source_material/*
-!docs/resume_source_material/.gitkeep
+hand_crafted_resumes/*
+!hand_crafted_resumes/.gitkeep
+!hand_crafted_resumes/*example*
