@@ -12,10 +12,12 @@ You can't have AI slop if it's all your own words (if you write like a bot, I ca
 
 ## How It Works
 
-1. **Import** — drop your existing resumes (PDFs, text) into `hand_crafted_resumes/` and ask the AI to import them. It extracts everything into a single master file at `data/comprehensive_bio.yaml` with tagged, prioritized bullets. Your original wording is preserved — the AI structures, it doesn't rewrite.
-2. **Add** — when you start a new job, the AI interviews you and adds bullets to `data/comprehensive_bio.yaml`. It's a copy editor, not a ghostwriter — you provide the words, it helps with structure and consistency.
-3. **Tailor** — paste a job description and ask the AI to tailor your resume. It saves the JD and selects the most relevant bullets by ID, writing everything to `data/jobs/<company>/<role>/`.
-4. **Generate** — run `python scripts/generate.py --data data/jobs/<company>/<role>/tailored.yaml` to produce a PDF. The tool resolves bullet references against the master, renders HTML via Jinja2, and converts to PDF with WeasyPrint.
+**One-time setup:** drop your existing resumes (PDFs, text) into `hand_crafted_resumes/` and ask the AI to import them. It extracts everything into a single master file at `data/comprehensive_bio.yaml` with tagged, prioritized bullets. Your original wording is preserved — the AI structures, it doesn't rewrite.
+
+**For each job application:**
+
+1. **Tailor** — paste a job description and ask the AI to tailor your resume. It selects the most relevant bullets by ID and writes a lightweight reference file to `data/jobs/<company>/<role>/tailored.yaml`.
+2. **Generate** — run `python scripts/generate.py --data data/jobs/<company>/<role>/tailored.yaml` to produce a PDF. The tool resolves bullet references against the master, renders HTML via Jinja2, and converts to PDF with WeasyPrint.
 
 The boundary is simple: your *content* is sacred — your claims, your phrasing, your voice. The AI handles *organization* — categorizing skills, selecting bullets, ordering sections, formatting output. The result sounds like you because every word is yours.
 
