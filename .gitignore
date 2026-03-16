@@ -12,4 +12,3 @@ instance/
 .vscode/
 hand_crafted_resumes/*
 !hand_crafted_resumes/.gitkeep
-!hand_crafted_resumes/*example*
