@@ -6,7 +6,7 @@ Instructions for Claude Code (or any AI assistant) to tailor a resume for a spec
 
 ## 1. Overview
 
-You are given a master resume (`data/resume.yaml`) containing every piece of professional history, and a job description. Your task is to produce a tailored subset of that data, then render it to PDF.
+You are given a master resume (`data/comprehensive_bio.yaml`) containing every piece of professional history, and a job description. Your task is to produce a tailored subset of that data, then render it to PDF.
 
 You select — never invent or modify.
 
@@ -14,9 +14,9 @@ You select — never invent or modify.
 
 ## 2. Input Files
 
-- **Master data**: `data/resume.yaml` — read this first, every time
+- **Master data**: `data/comprehensive_bio.yaml` — read this first, every time
 - **Job description**: path provided by the user (or pasted inline)
-- **Output directory**: `jobs/<company>/<role>/` — create if it doesn't exist
+- **Output directory**: `data/jobs/<company>/<role>/` — create if it doesn't exist
 
 ---
 
@@ -98,11 +98,11 @@ Page length cannot be estimated from bullet count alone — it depends on the te
 
 ### 6a. Create tailored YAML
 
-Write `jobs/<company>/<role>/tailored.yaml` with this structure:
+Write `data/jobs/<company>/<role>/tailored.yaml` with this structure:
 
 ```yaml
 # Tailored for: <Company> — <Role>
-source: data/resume.yaml
+source: data/comprehensive_bio.yaml
 
 basics:
   # copy verbatim from master
@@ -133,14 +133,14 @@ education:
 **Key points:**
 - `source` field triggers reference resolution at generation time
 - `work` entries only need `name` + `highlight_ids`; position/dates/summary are inherited from master
-- `highlight_ids` is an ordered list of 8-char hex bullet IDs from `data/resume.yaml`
+- `highlight_ids` is an ordered list of 8-char hex bullet IDs from `data/comprehensive_bio.yaml`
 - Order of `work` entries = order on the rendered resume; order of `highlight_ids` = order of bullets
 - Skills, basics, and education are still copied verbatim
 
 ### 6b. Generate PDF
 
 ```bash
-python scripts/generate.py --data jobs/<company>/<role>/tailored.yaml --keep-html
+python scripts/generate.py --data data/jobs/<company>/<role>/tailored.yaml --keep-html
 # First run: prompts for template selection and output path, saves to .generate.yaml
 # Subsequent runs: uses saved settings automatically
 # To change template: add --reconfigure flag
@@ -150,7 +150,7 @@ python scripts/generate.py --data jobs/<company>/<role>/tailored.yaml --keep-htm
 
 After generation:
 - Confirm the PDF exists and is non-zero bytes
-- Check page count: `generate.py` prints the page count; if `pdfinfo` is available, use `pdfinfo jobs/<company>/<role>/resume.pdf` to confirm 1 or 2 pages
+- Check page count: `generate.py` prints the page count; if `pdfinfo` is available, use `pdfinfo data/jobs/<company>/<role>/resume.pdf` to confirm 1 or 2 pages
 - Offer to analyze coverage: **"Want me to check how well this covers the job description? I can identify gaps and suggest improvements."** If yes, follow `ANALYZING.md`.
 
 ---
@@ -162,7 +162,7 @@ After generation:
 3. **Never remove basics** — name, email, phone, profiles are always included
 4. **Never use `highlights` with copied text** in tailored YAML — use `highlight_ids` referencing master bullet IDs
 5. **Never skip the analysis step** — reading the JD carefully before selecting is mandatory
-6. **Never modify `data/resume.yaml`** — it is the single source of truth; only create new files in `jobs/`
+6. **Never modify `data/comprehensive_bio.yaml`** — it is the single source of truth; only create new files in `data/jobs/`
 
 ---
 
@@ -172,10 +172,10 @@ After generation:
 User: "Tailor my resume for this SRE role at Google: <JD>"
 
 You:
-1. Read data/resume.yaml
+1. Read data/comprehensive_bio.yaml
 2. Analyze JD: key themes = reliability, SLOs, on-call, Kubernetes, Go/Python
 3. Select bullets by ID emphasizing SRE, distributed systems, reliability work
-4. Write jobs/google/sre/tailored.yaml (source + highlight_ids, no copied text)
-5. Run: python scripts/generate.py --data jobs/google/sre/tailored.yaml --keep-html
-6. Confirm: pdfinfo jobs/google/sre/resume.pdf → 1 or 2 pages
+4. Write data/jobs/google/sre/tailored.yaml (source + highlight_ids, no copied text)
+5. Run: python scripts/generate.py --data data/jobs/google/sre/tailored.yaml --keep-html
+6. Confirm: pdfinfo data/jobs/google/sre/resume.pdf → 1 or 2 pages
 ```

@@ -99,7 +99,7 @@ MASTER = {
 
 def test_resolve_tailored_happy_path():
     tailored = {
-        "source": "data/resume.yaml",
+        "source": "data/comprehensive_bio.yaml",
         "basics": {"name": "Test"},
         "work": [{"name": "Acme", "highlight_ids": ["11223344", "aabbccdd"]}],
     }
@@ -117,7 +117,7 @@ def test_resolve_tailored_happy_path():
 
 def test_resolve_tailored_publication_resolved_from_master():
     tailored = {
-        "source": "data/resume.yaml",
+        "source": "data/comprehensive_bio.yaml",
         "work": [],
         "publications": [{"name": "My Paper"}],
     }
@@ -126,14 +126,14 @@ def test_resolve_tailored_publication_resolved_from_master():
 
 
 def test_resolve_tailored_no_publications_removes_key():
-    tailored = {"source": "data/resume.yaml", "work": [], "publications": []}
+    tailored = {"source": "data/comprehensive_bio.yaml", "work": [], "publications": []}
     result = resolve_tailored(tailored, MASTER)
     assert "publications" not in result
 
 
 def test_resolve_tailored_disambiguates_by_position():
     tailored = {
-        "source": "data/resume.yaml",
+        "source": "data/comprehensive_bio.yaml",
         "work": [
             {"name": "Dual Corp", "position": "Senior Engineer", "highlight_ids": ["bbbbbbbb"]}
         ],

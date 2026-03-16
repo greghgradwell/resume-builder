@@ -12,10 +12,10 @@ You can't have AI slop if it's all your own words (if you write like a bot, I ca
 
 ## How It Works
 
-1. **Import** — feed your existing resumes (PDFs, text, multiple files) to the AI. It extracts everything into a single master YAML file (`data/resume.yaml`) with tagged, prioritized bullets. Your original wording is preserved — the AI structures, it doesn't rewrite.
-2. **Add** — when you start a new job, the AI interviews you and helps you shape bullets. It's a copy editor, not a ghostwriter — you provide the words, it helps with structure and consistency.
-3. **Tailor** — paste a job description and ask the AI to tailor your resume. It selects the most relevant bullets by ID, orders them, and writes a lightweight reference file.
-4. **Generate** — the tool resolves references, renders HTML via Jinja2 templates, and produces a PDF with WeasyPrint.
+1. **Import** — drop your existing resumes (PDFs, text) into `hand_crafted_resumes/` and ask the AI to import them. It extracts everything into a single master file at `data/comprehensive_bio.yaml` with tagged, prioritized bullets. Your original wording is preserved — the AI structures, it doesn't rewrite.
+2. **Add** — when you start a new job, the AI interviews you and adds bullets to `data/comprehensive_bio.yaml`. It's a copy editor, not a ghostwriter — you provide the words, it helps with structure and consistency.
+3. **Tailor** — paste a job description and ask the AI to tailor your resume. It saves the JD and selects the most relevant bullets by ID, writing everything to `data/jobs/<company>/<role>/`.
+4. **Generate** — run `python scripts/generate.py --data data/jobs/<company>/<role>/tailored.yaml` to produce a PDF. The tool resolves bullet references against the master, renders HTML via Jinja2, and converts to PDF with WeasyPrint.
 
 The boundary is simple: your *content* is sacred — your claims, your phrasing, your voice. The AI handles *organization* — categorizing skills, selecting bullets, ordering sections, formatting output. The result sounds like you because every word is yours.
 
@@ -51,28 +51,24 @@ The boundary is simple: your *content* is sacred — your claims, your phrasing,
 
 ## Quick Start
 
-Drop your existing resume PDFs/docs into `docs/resume_source_material/`, then tell your AI assistant:
+The project ships with example data — Robin Codewright's fictional resume, source PDFs in `hand_crafted_resumes/`, and a complete tailored output in `data/jobs/example/`. Explore these to see how the pieces fit together, then replace them with your own.
 
-```
-"Import my resumes from docs/resume_source_material/"
-```
+1. Drop your existing resume PDFs into `hand_crafted_resumes/`
+2. Tell your AI assistant: `"Import my resumes from hand_crafted_resumes/"`
+3. Tell your AI assistant: `"Tailor my resume for <role> at <company>"`
 
-The AI reads `IMPORT_EXISTING.md` and aggregates everything into `data/resume.yaml`. The more resumes you feed it, the more complete your master file.
-
-Once imported:
-
-```
-"Tailor my resume for this Software Engineer role at Acme Corp: <paste JD>"
-```
+The more resumes you feed the import step, the more complete your master file. Example files are cleaned up automatically during your first import.
 
 ## Project Structure
 
 ```
-data/resume.yaml                  # Master resume (single source of truth)
-jobs/<company>/<role>/
-  tailored.yaml                   # AI-generated subset referencing master bullet IDs
-  .generate.yaml                  # Saved template + output settings
-  resume.pdf                      # Generated output (gitignored)
+data/
+  comprehensive_bio.yaml          # Master resume (single source of truth)
+  jobs/<company>/<role>/
+    tailored.yaml                 # AI-generated subset referencing master bullet IDs
+    .generate.yaml                # Saved template + output settings
+    resume.pdf                    # Generated output (gitignored)
+hand_crafted_resumes/             # Your existing resumes go here (gitignored, examples tracked)
 scripts/
   generate.py                     # Main entrypoint: resolve references → HTML → PDF
   render.py                       # Jinja2 HTML rendering
@@ -82,8 +78,6 @@ templates/
   base.html / base.css            # Shared template infrastructure
   modern/                         # "Modern" template (resume.html + style.css + meta.yaml)
 fonts/                            # Self-hosted font files (TTF/WOFF2)
-docs/resume_source_material/      # Your existing resumes go here (gitignored)
-docs/job_descriptions/            # Job descriptions for tailoring (gitignored)
 ```
 
 ## AI Workflows

@@ -1,9 +1,9 @@
-# Tailored for: Meridian Tech — Software Engineer
-source: data/resume.yaml
+# Tailored for: Stellarpath Industries — Senior Cloud Platform Engineer
+source: data/comprehensive_bio.yaml
 
 basics:
   name: Robin Codewright
-  label: Senior Software Engineer
+  label: Senior Cloud Platform Engineer
   email: robin@example.com
   phone: "555.123.4567"
   location:
@@ -21,35 +21,31 @@ basics:
 work:
   - name: Nimbus Labs
     position: Senior Software Engineer
-    highlight_ids: [4a7f2c81, 8b3e1d56, c2f94a0e, e5a08f72]
+    highlight_ids: [4a7f2c81, 8b3e1d56, c2f94a0e, 17d6e3b9, e5a08f72, 3f1b7c44]
   - name: Nimbus Labs
     position: Software Engineer
     highlight_ids: [91a2d4f7, f6c83b21, 2e7d0a95]
   - name: Verdant Systems
-    highlight_ids: [7c4e82d1, 5b92c7e4, 08e5d1a3]
-  - name: Pixelweave
-    highlight_ids: [a1d23b47, 42fc8e19]
+    highlight_ids: [7c4e82d1, 5b92c7e4, b6a43f10, ec71f5d8]
   - name: DataForge Inc
     highlight_ids: [73e9b1d5, c4a260f8]
-  - name: Ironclad Software
-    highlight_ids: [2a4b8f61]
 
 skills:
   - name: Languages
     level: Advanced
-    keywords: [Go, Python, TypeScript, JavaScript, SQL]
+    keywords: [Go, Python, SQL, Bash]
   - name: Cloud & Infrastructure
     level: Advanced
-    keywords: [AWS, Terraform, Kubernetes, Docker, NATS, Kafka]
-  - name: Web & API
-    level: Advanced
-    keywords: [React, Node.js, REST, GraphQL, Redis]
+    keywords: [AWS, Terraform, Kubernetes, Docker, Linux, NATS, Kafka]
   - name: Data & Storage
     level: Intermediate
-    keywords: [PostgreSQL, TimescaleDB, Elasticsearch, Apache Spark]
+    keywords: [PostgreSQL, TimescaleDB, Redis, Apache Spark, Redshift]
   - name: DevOps & Observability
     level: Intermediate
-    keywords: [CI/CD, GitHub Actions, OpenTelemetry, Grafana, k6]
+    keywords: [CI/CD, GitHub Actions, OpenTelemetry, Jaeger, Grafana, k6]
+  - name: Practices
+    level: Intermediate
+    keywords: [architecture docs, code review, TDD, agile, incident response]
 
 education:
   - institution: Cascadia University
