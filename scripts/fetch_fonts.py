@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-"""Download Google Fonts (TTF + WOFF2) and generate @font-face CSS."""
 
 import re
 from pathlib import Path
@@ -31,9 +30,7 @@ UA_WOFF2 = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
     "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 )
-UA_TTF = (
-    "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; Trident/4.0)"
-)
+UA_TTF = "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; Trident/4.0)"
 
 GOOGLE_FONTS_CSS_URL = "https://fonts.googleapis.com/css2"
 
@@ -67,12 +64,14 @@ def parse_font_faces(css_text: str, latin_only: bool = True) -> list[dict]:
         if not all([family_match, weight_match, url_match]):
             continue
 
-        faces.append({
-            "family": family_match.group(1),
-            "weight": int(weight_match.group(1)),
-            "style": style_match.group(1) if style_match else "normal",
-            "url": url_match.group(1),
-        })
+        faces.append(
+            {
+                "family": family_match.group(1),
+                "weight": int(weight_match.group(1)),
+                "style": style_match.group(1) if style_match else "normal",
+                "url": url_match.group(1),
+            }
+        )
     return faces
 
 
@@ -105,16 +104,19 @@ def fetch_font_family(family: str, weights: list[int]) -> list[dict]:
         for face in faces:
             dest = family_dir / font_filename(face["family"], face["weight"], "ttf")
             download_file(face["url"], dest)
-            downloaded.append({
-                "family": face["family"],
-                "weight": face["weight"],
-                "style": face["style"],
-                "ttf_path": str(dest.relative_to(FONTS_DIR)),
-                "woff2_path": str(
-                    (family_dir / font_filename(face["family"], face["weight"], "woff2"))
-                    .relative_to(FONTS_DIR)
-                ),
-            })
+            downloaded.append(
+                {
+                    "family": face["family"],
+                    "weight": face["weight"],
+                    "style": face["style"],
+                    "ttf_path": str(dest.relative_to(FONTS_DIR)),
+                    "woff2_path": str(
+                        (
+                            family_dir / font_filename(face["family"], face["weight"], "woff2")
+                        ).relative_to(FONTS_DIR)
+                    ),
+                }
+            )
 
     # WOFF2: single request with all weights, filter latin subset
     css_url = build_css_url(family, weights)
@@ -130,14 +132,16 @@ def fetch_font_family(family: str, weights: list[int]) -> list[dict]:
 def generate_fonts_css(all_faces: list[dict]) -> str:
     lines = []
     for face in all_faces:
-        lines.append(f"""@font-face {{
+        lines.append(
+            f"""@font-face {{
   font-family: '{face["family"]}';
   font-style: {face["style"]};
   font-weight: {face["weight"]};
   font-display: swap;
   src: url('{face["woff2_path"]}') format('woff2'),
        url('{face["ttf_path"]}') format('truetype');
-}}""")
+}}"""
+        )
     return "\n\n".join(lines) + "\n"
 
 

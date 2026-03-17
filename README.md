@@ -106,6 +106,7 @@ python scripts/generate.py --data <yaml> [--keep-html] [--reconfigure]  # Genera
 python scripts/render.py --data <yaml> --output <path>                    # Render HTML only
 python scripts/pdf.py --input <html> --output <path>                     # HTML → PDF
 python scripts/fetch_fonts.py                                            # Download fonts
+python scripts/generate_examples.py                                      # Regenerate example PDFs
 ```
 
 With [just](https://github.com/casey/just):
@@ -114,6 +115,7 @@ With [just](https://github.com/casey/just):
 just regen              # Regenerate the most recently modified tailored.yaml
 just generate <path>    # Generate a specific tailored resume
 just fonts              # Fetch/update fonts
+just examples           # Regenerate example PDFs
 ```
 
 ## Requirements

@@ -29,14 +29,14 @@ def format_date(value: str) -> str:
 def strip_scheme(url: str) -> str:
     for prefix in ("https://", "http://"):
         if url.startswith(prefix):
-            return url[len(prefix):]
+            return url[len(prefix) :]
     return url
 
 
 def build_jinja_env(template_dir: Path) -> Environment:
     env = Environment(
         loader=FileSystemLoader([str(template_dir), str(TEMPLATES_DIR)]),
-        autoescape=False,
+        autoescape=False,  # resume data is trusted local YAML, not web input
     )
     env.filters["format_date"] = format_date
     env.filters["strip_scheme"] = strip_scheme

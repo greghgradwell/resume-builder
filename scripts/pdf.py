@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-"""Convert a rendered HTML resume to PDF using WeasyPrint."""
 
 import argparse
 from pathlib import Path

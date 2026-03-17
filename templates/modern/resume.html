@@ -118,7 +118,7 @@
         <span class="entry-subtitle"> · {{ edu.institution }}</span>
       </div>
       <div class="entry-date">
-        {{ edu.startDate | format_date }} – {{ edu.endDate | format_date }}
+        {% if edu.startDate %}{{ edu.startDate | format_date }} – {% endif %}{{ edu.endDate | format_date }}
       </div>
     </div>
     {% if edu.score %}
