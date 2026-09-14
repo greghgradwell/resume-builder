@@ -74,6 +74,7 @@ For each position, create a work entry with bullets:
 work:
   - name: Company Name
     position: Job Title
+    location: City, ST
     startDate: "YYYY-MM"
     endDate: "YYYY-MM"        # omit entirely for current role
     summary: One-sentence description of the company or role focus.

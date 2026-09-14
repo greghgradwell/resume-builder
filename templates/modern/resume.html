@@ -26,7 +26,7 @@
       <span class="entry-title">{{ job.position }}</span>
       <span class="entry-date">{{ job.startDate | format_date }}{% if job.endDate %} – {{ job.endDate | format_date }}{% else %} – Present{% endif %}</span>
     </div>
-    <div class="entry-subtitle">{{ job.name }}</div>
+    <div class="entry-subtitle">{{ job.name }}{% if job.location %} · {{ job.location }}{% endif %}</div>
     {% set bullets = job.bullets | default([]) %}
     {% set highlights = job.highlights | default([]) %}
     {% if bullets %}
