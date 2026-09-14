@@ -132,7 +132,7 @@ education:
 
 **Key points:**
 - `source` field triggers reference resolution at generation time
-- `work` entries only need `name` + `highlight_ids`; position/dates/summary are inherited from master
+- `work` entries only need `name` + `highlight_ids`; position/location/dates/summary are inherited from master
 - `highlight_ids` is an ordered list of 8-char hex bullet IDs from `data/comprehensive_bio.yaml`
 - Order of `work` entries = order on the rendered resume; order of `highlight_ids` = order of bullets
 - Skills, basics, and education are still copied verbatim

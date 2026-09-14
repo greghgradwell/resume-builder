@@ -112,7 +112,7 @@ def resolve_tailored(tailored_data: dict, master_data: dict) -> dict:
             highlights.append(bullet_lookup[bid])
 
         resolved_entry: dict = {"name": master_job["name"], "position": master_job["position"]}
-        for field in ("startDate", "endDate", "summary"):
+        for field in ("location", "startDate", "endDate", "summary"):
             if field in master_job:
                 resolved_entry[field] = master_job[field]
         resolved_entry["highlights"] = highlights

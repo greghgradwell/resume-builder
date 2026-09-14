@@ -19,6 +19,7 @@ Ask questions **one or two at a time**. Do not present a wall of questions. Use 
 ### 1. Role basics
 Ask:
 - Company name, job title
+- Location (City, State)
 - Start date and end date (or "present")
 
 ### 2. Company context
@@ -100,6 +101,7 @@ Once the user has approved every bullet in their own words:
 ```yaml
 - name: Company Name
   position: Job Title
+  location: City, ST
   startDate: "YYYY-MM"
   endDate: "YYYY-MM"          # omit entirely if current role
   summary: One-sentence description of the company or role focus.

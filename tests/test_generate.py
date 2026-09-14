@@ -66,6 +66,7 @@ MASTER = {
         {
             "name": "Acme",
             "position": "Engineer",
+            "location": "Austin, TX",
             "startDate": "2022-01",
             "endDate": "2023-06",
             "summary": "Built things.",
@@ -109,6 +110,7 @@ def test_resolve_tailored_happy_path():
     job = result["work"][0]
     assert job["name"] == "Acme"
     assert job["position"] == "Engineer"
+    assert job["location"] == "Austin, TX"
     assert job["startDate"] == "2022-01"
     assert job["endDate"] == "2023-06"
     assert job["summary"] == "Built things."
@@ -140,6 +142,17 @@ def test_resolve_tailored_disambiguates_by_position():
     }
     result = resolve_tailored(tailored, MASTER)
     assert result["work"][0]["highlights"] == ["Senior work"]
+
+
+def test_resolve_tailored_omits_location_when_master_has_none():
+    tailored = {
+        "source": "data/comprehensive_bio.yaml",
+        "work": [
+            {"name": "Dual Corp", "position": "Senior Engineer", "highlight_ids": ["bbbbbbbb"]}
+        ],
+    }
+    result = resolve_tailored(tailored, MASTER)
+    assert "location" not in result["work"][0]
 
 
 def test_resolve_tailored_raises_on_duplicate_bullet_id():
