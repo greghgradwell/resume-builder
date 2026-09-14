@@ -19,6 +19,10 @@ generate path:
 fonts:
     {{python}} scripts/fetch_fonts.py
 
+# First-time setup: unpack the example and install git hooks
+setup:
+    {{python}} scripts/setup.py
+
 # (Re)generate example PDFs
 examples:
     {{python}} scripts/generate_examples.py
