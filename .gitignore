@@ -12,3 +12,10 @@ instance/
 .vscode/
 hand_crafted_resumes/*
 !hand_crafted_resumes/.gitkeep
+
+# Personal resume data - real data lives here, gitignored so it never
+# reaches the public repo. data/comprehensive_bio.yaml stays as the
+# tracked fictional example.
+data/resume.yaml
+data/jobs/*
+!data/jobs/example
