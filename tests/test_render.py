@@ -8,7 +8,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
 @pytest.fixture
 def resume_data():
-    return load_yaml(str(PROJECT_ROOT / "data" / "comprehensive_bio.yaml"))
+    return load_yaml(str(PROJECT_ROOT / "tests" / "fixtures" / "sample_bio.yaml"))
 
 
 @pytest.fixture

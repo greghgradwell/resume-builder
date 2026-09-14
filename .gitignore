@@ -4,11 +4,13 @@ __pycache__/
 venv/
 node_modules/
 *.pdf
-!hand_crafted_resumes/*example*.pdf
-!data/jobs/example/**/*.pdf
-data/jobs/**/*.html
 .env
 instance/
 .vscode/
+
+# Personal resume data — never committed. `python scripts/setup.py` unpacks the
+# fictional example into these paths; your own data replaces it.
+data/comprehensive_bio.yaml
+data/jobs/*
 hand_crafted_resumes/*
 !hand_crafted_resumes/.gitkeep

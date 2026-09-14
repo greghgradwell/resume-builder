@@ -1,0 +1,12 @@
+#!/bin/sh
+# Personal resume data lives in these paths; .gitignore keeps it out, this catches `git add -f`.
+blocked=$(git diff --cached --name-only --diff-filter=ACMR \
+    | grep -E '^(data/comprehensive_bio\.yaml$|data/jobs/|hand_crafted_resumes/)' \
+    | grep -v '^hand_crafted_resumes/\.gitkeep$')
+
+if [ -n "$blocked" ]; then
+    echo "Commit blocked: these paths hold personal resume data and must not be committed:" >&2
+    echo "$blocked" | sed 's/^/  /' >&2
+    echo "Unstage them with: git restore --staged <path>" >&2
+    exit 1
+fi
