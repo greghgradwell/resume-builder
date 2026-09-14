@@ -1,16 +1,18 @@
 # Resume Builder
 
 ## Project Structure
-- `data/comprehensive_bio.yaml` — Master resume data (single source of truth)
+- `data/comprehensive_bio.yaml` — Master resume data (single source of truth; gitignored personal data)
 - `INSTRUCTIONS.md` — AI tailoring instructions (READ THIS for resume generation tasks)
 - `scripts/render.py` — HTML rendering
 - `scripts/pdf.py` — PDF generation
 - `scripts/generate.py` — Combined render + PDF
 - `scripts/fetch_fonts.py` — Font downloader
+- `scripts/setup.py` — First-time setup: unpacks `examples/example-materials.tar.gz`, installs git hooks
+- `hooks/pre-commit` — Blocks commits of personal data (`data/comprehensive_bio.yaml`, `data/jobs/`, `hand_crafted_resumes/`)
 - `templates/` — Jinja2 HTML templates and CSS
 - `fonts/` — Self-hosted font files (TTF/WOFF2)
 - `data/jobs/` — Generated resumes organized by company/role
-- `data/jobs/<company>/<role>/.generate.yaml` — Sidecar: saved template + output path (commit this)
+- `data/jobs/<company>/<role>/.generate.yaml` — Sidecar: saved template + output path
 
 ## Resume Tailoring Workflow
 When asked to tailor a resume, ALWAYS read INSTRUCTIONS.md first and follow it exactly.
@@ -29,9 +31,11 @@ When asked to import, convert, or populate a resume from a PDF, text, or LinkedI
 - `python scripts/generate.py --data <yaml> [--keep-html] [--reconfigure]` — Generate PDF (interactive on first run)
 - `python scripts/render.py --data <yaml> --output <path>` — Render HTML only
 - `python scripts/pdf.py --input <html> --output <path>` — Convert HTML to PDF
+- `python scripts/setup.py` — Unpack example (only if no master bio exists) + install git hooks
 
 ## Conventions
-- Python 3.10+, virtual environment (location chosen during installation)
+- Python 3.12+, virtual environment (location chosen during installation)
 - No docstrings unless logic is non-obvious
 - Functions and arguments should be self-documenting via naming
 - No fallback behavior — code works or fails explicitly
+- Never commit personal resume data; never bypass the pre-commit hook

@@ -29,7 +29,7 @@ Different resumes will contain different subsets of the user's experience — th
 
 ## 3. Read the Example
 
-Before writing anything, read `data/comprehensive_bio.yaml` — this ships with example data demonstrating the expected structure, field names, and formatting conventions. Your output will replace it and must match this structure precisely.
+Before writing anything, read `data/comprehensive_bio.yaml` — `python scripts/setup.py` unpacks example data there demonstrating the expected structure, field names, and formatting conventions. If it doesn't exist, run that script first. Your output will replace it and must match this structure precisely.
 
 ---
 

@@ -27,7 +27,7 @@ The boundary is simple: your *content* is sacred — your claims, your phrasing,
 
 1. **Python virtual environment** — ask the user if they want a project-local venv (`.venv`) or a shared one elsewhere. Then create and activate it:
    ```bash
-   python -m venv .venv && source .venv/bin/activate
+   python3.12 -m venv .venv && source .venv/bin/activate
    ```
 
 2. **Python packages:**
@@ -51,9 +51,15 @@ The boundary is simple: your *content* is sacred — your claims, your phrasing,
    python scripts/fetch_fonts.py
    ```
 
+5. **Example + git hooks:**
+   ```bash
+   python scripts/setup.py
+   ```
+   Unpacks a complete fictional example (Robin Codewright) and installs a pre-commit hook that blocks committing personal resume data.
+
 ## Quick Start
 
-The project ships with example data — Robin Codewright's fictional resume, source PDFs in `hand_crafted_resumes/`, and a complete tailored output in `data/jobs/example/`. Explore these to see how the pieces fit together, then replace them with your own.
+`python scripts/setup.py` unpacks an end-to-end example: Robin Codewright's source resumes in `hand_crafted_resumes/`, the master file imported from them at `data/comprehensive_bio.yaml`, and a tailored resume in `data/jobs/example/`. Run `python scripts/generate.py --data data/jobs/example/senior-cloud-platform-engineer/tailored.yaml` to see the pipeline produce a PDF, then replace the example with your own data.
 
 1. Drop your existing resume PDFs into `hand_crafted_resumes/`
 2. Tell your AI assistant: `"Import my resumes from hand_crafted_resumes/"`
@@ -61,21 +67,30 @@ The project ships with example data — Robin Codewright's fictional resume, sou
 
 The more resumes you feed the import step, the more complete your master file. Example files are cleaned up automatically during your first import.
 
+### Your data stays private
+
+Everything personal — `data/comprehensive_bio.yaml`, `data/jobs/`, and `hand_crafted_resumes/` — is gitignored, so you can keep your resume data in your clone of this repo without it reaching a public remote. The pre-commit hook installed by `setup.py` also rejects those paths if they are force-added.
+
 ## Project Structure
 
 ```
 data/
-  comprehensive_bio.yaml          # Master resume (single source of truth)
+  comprehensive_bio.yaml          # Master resume (single source of truth, gitignored)
   jobs/<company>/<role>/
     tailored.yaml                 # AI-generated subset referencing master bullet IDs
     .generate.yaml                # Saved template + output settings
     resume.pdf                    # Generated output (gitignored)
-hand_crafted_resumes/             # Your existing resumes go here (gitignored, examples tracked)
+hand_crafted_resumes/             # Your existing resumes go here (gitignored)
+examples/
+  example-materials.tar.gz        # Fictional example, unpacked by scripts/setup.py
+hooks/
+  pre-commit                      # Blocks committing personal data
 scripts/
   generate.py                     # Main entrypoint: resolve references → HTML → PDF
   render.py                       # Jinja2 HTML rendering
   pdf.py                          # WeasyPrint PDF conversion
   fetch_fonts.py                  # Google Fonts downloader
+  setup.py                        # First-time setup: example + git hooks
 templates/
   base.html / base.css            # Shared template infrastructure
   modern/                         # "Modern" template (resume.html + style.css + meta.yaml)
@@ -107,6 +122,7 @@ python scripts/render.py --data <yaml> --output <path>                    # Rend
 python scripts/pdf.py --input <html> --output <path>                     # HTML → PDF
 python scripts/fetch_fonts.py                                            # Download fonts
 python scripts/generate_examples.py                                      # Regenerate example PDFs
+python scripts/setup.py                                                  # Unpack example + install hooks
 ```
 
 With [just](https://github.com/casey/just):
@@ -116,12 +132,14 @@ just regen              # Regenerate the most recently modified tailored.yaml
 just generate <path>    # Generate a specific tailored resume
 just fonts              # Fetch/update fonts
 just examples           # Regenerate example PDFs
+just setup              # Unpack example + install hooks
+just pack-examples      # Rebuild examples/example-materials.tar.gz
 ```
 
 ## Requirements
 
 - An AI CLI tool (Claude Code, Gemini CLI, Cursor, or similar)
-- Python 3.10+
+- Python 3.12+
 
 ## License
 
