@@ -22,3 +22,14 @@ fonts:
 # (Re)generate example PDFs
 examples:
     {{python}} scripts/generate_examples.py
+
+# Pack the example files into the tracked archive (run after `just examples` or editing the example)
+pack-examples:
+    tar czf examples/example-materials.tar.gz \
+        data/comprehensive_bio.yaml \
+        data/jobs/example/senior-cloud-platform-engineer/.generate.yaml \
+        "data/jobs/example/senior-cloud-platform-engineer/Senior Cloud Platform Engineer - Stellarpath Industries (example).pdf" \
+        data/jobs/example/senior-cloud-platform-engineer/resume.pdf \
+        data/jobs/example/senior-cloud-platform-engineer/tailored.yaml \
+        "hand_crafted_resumes/Robin Codewright - Cloud Engineer (example).pdf" \
+        "hand_crafted_resumes/Robin Codewright - Full Stack Developer (example).pdf"
